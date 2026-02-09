@@ -17,5 +17,5 @@
   -->
 
 <resources>
-    <string name="app_name" translatable="false">Choona (Dev)</string>
+    <string name="app_name" translatable="false">ChromaticTuner</string>
 </resources>

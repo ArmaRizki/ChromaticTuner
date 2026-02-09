@@ -9,12 +9,12 @@ plugins {
 }
 
 android {
-    namespace = "com.rohankhayech.choona"
+    namespace = "com.armarizki.chromatic"
 
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.rohankhayech.choona"
+        applicationId = "com.armarizki.chromatic"
         minSdk = 24
         targetSdk = 36
         versionCode = 14
