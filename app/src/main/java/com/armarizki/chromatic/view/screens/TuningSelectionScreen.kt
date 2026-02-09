@@ -101,20 +101,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
 
-/**
- * UI screen that allows the user to select a tuning for use,
- * as well as managing favourite and custom tunings.
- *
- * @param tuningList State holder for the tuning list.
- * @param backIcon Icon used for the back navigation button.
- * @param pinnedInitial Whether the pinned tuning is used as the initial tuning.
- * @param onSave Called when a custom tuning is saved with the specified name.
- * @param onSelect Called when a tuning is selected.
- * @param onSelectChromatic Called when chromatic tuning is selected.
- * @param onDismiss Called when the screen is dismissed.
- *
- * @author Rohan Khayech
- */
+
 @Composable
 fun TuningSelectionScreen(
     tuningList: TuningList,
@@ -173,36 +160,6 @@ fun TuningSelectionScreen(
     )
 }
 
-/**
- * UI screen that allows the user to select a tuning for use,
- * as well as managing favourite and custom tunings.
- *
- * @param current Currently selected tuning, or null if N/A.
- * @param currentSaved Whether the current tuning is saved as a custom or built-in tuning.
- * @param tunings Current collection of filtered and grouped tunings.
- * @param favourites Set of tunings marked as favourites.
- * @param custom Set of custom tunings saved by the user.
- * @param pinned The tuning pinned to be used when the app is first opened.
- * @param pinnedInitial Whether the pinned tuning is used as the initial tuning.
- * @param instrumentFilter Current filter for tuning instrument.
- * @param categoryFilter Current filter for tuning category.
- * @param instrumentFilters Available instrument filters and their enabled states.
- * @param categoryFilters Available category filters and their enabled states.
- * @param backIcon Icon used for the back navigation button.
- * @param deletedTuning Event indicating the specified tuning was deleted.
- * @param isFavourite Function that returns whether a tuning is marked as a favourite.
- * @param onSelectInstrument Called when an instrument filter is selected.
- * @param onSelectCategory Called when an category filter is selected.
- * @param onSave Called when a custom tuning is saved with the specified name.
- * @param onFavouriteSet Called when a tuning is favourited or unfavourited.
- * @param onSelect Called when a tuning is selected.
- * @param onDelete Called when a custom tuning is deleted.
- * @param onDismiss Called when the screen is dismissed.
- * @param onPin Called when a tuning is pinned as default.
- * @param onUnpin Called when the pinned tuning is unpinned as default.
- *
- * @author Rohan Khayech
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TuningSelectionScreen(
@@ -815,12 +772,12 @@ private fun LazyItemScope.TuningItem(
 /** @return The localised name of this instrument. */
 @Composable
 fun Instrument.getLocalisedName(): String {
-    return stringResource(when (this) {
-        Instrument.GUITAR -> R.string.instr_guitar
-        Instrument.BASS -> R.string.instr_bass
-        Instrument.UKULELE -> R.string.instr_ukulele
-        else -> R.string.instr_other
-    })
+    return stringResource(
+        when (this) {
+            Instrument.GUITAR -> R.string.instr_guitar
+            Instrument.BASS -> R.string.instr_bass
+        }
+    )
 }
 
 /** @return The localised name of this category. */
@@ -836,17 +793,30 @@ fun Category?.getLocalisedName(): String {
 
 /** UI component displaying a tuning category label with [title] text. */
 @Composable
-private fun LazyItemScope.SectionLabel(title: String, modifier: Modifier = Modifier) {
-    SectionLabel(modifier = modifier.animateItem(), title = title)
+private fun LazyItemScope.SectionLabel(
+    title: String,
+    modifier: Modifier = Modifier
+) {
+    SectionLabelBase(
+        title = title,
+        modifier = modifier.animateItem()
+    )
 }
 
-/**
- * Dialog allowing the user to enter a name and save the specified tuning.
- *
- * @param tuning The tuning to save.
- * @param onSave Called when save button is pressed. Provides the saved tuning and the entered name.
- * @param onDismiss Called when the save dialog is dismissed.
- */
+@Composable
+private fun SectionLabelBase(
+    title: String,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = title,
+        style = MaterialTheme.typography.labelLarge,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    )
+}
+
 @Composable
 fun SaveTuningDialog(
     tuning: Tuning,

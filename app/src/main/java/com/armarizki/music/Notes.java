@@ -6,18 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * The notes class stores pitch values for all the guitar notes recognised by the application.
- * It provides methods for finding the closest note corresponding to a certain pitch.
- *
- * @implNote Many methods return or take a {@code noteIndex} value, which corresponds to a stored pitch value.
- * This value should only be used during the program's execution as the pitch values corresponding to
- * each index may change as values are added/removed. Notes stored externally for the purposes of
- * save/load functionality should store the value as the corresponding pitch to ensure it keeps the
- * same pitch value.
- *
- * @author Rohan Khayech
- */
 public final class Notes {
 
     /** The frequency of note A4 in Hz. */

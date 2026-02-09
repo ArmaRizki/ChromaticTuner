@@ -3,24 +3,13 @@ package com.armarizki.music;
 
 import org.billthefarmer.mididriver.GeneralMidiConstants;
 
-/**
- * Enum representing an stringed instrument.
- *
- * @author Rohan Khayech
- */
 public enum Instrument {
 
     /** Guitar */
     GUITAR("Guitar"),
 
     /** Bass */
-    BASS("Bass", 4, GeneralMidiConstants.ELECTRIC_BASS_FINGER),
-
-    /** Ukulele */
-    UKULELE("Ukulele", 4, GeneralMidiConstants.ACOUSTIC_GUITAR_NYLON),
-
-    /** Other Instrument */
-    OTHER("Other");
+    BASS("Bass", 4, GeneralMidiConstants.ELECTRIC_BASS_FINGER);
 
     /** Name of the instrument. */
     private final String name;

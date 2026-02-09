@@ -3,11 +3,6 @@ package com.armarizki.chromatic.model.tuning
 import androidx.compose.runtime.Immutable
 import com.armarizki.music.Tuning
 
-/**
- * Represents an instrument or chromatic tuning option selectable for tuning.
- * This can also be pinned, favourited and stored.
- * @author Rohan Khayech
- */
 @Immutable
 sealed class TuningEntry(
     /** Name of the tuning. */

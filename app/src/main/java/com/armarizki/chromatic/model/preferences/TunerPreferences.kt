@@ -7,22 +7,6 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 
-/**
- * Data class used to store preferences for the guitar tuner.
- *
- * @property enableStringSelectSound Whether to play a note sound when a string is selected.
- * @property enableInTuneSound Whether to play a sound once the string is in tune.
- * @property displayType Type of tuning offset value to display.
- * @property stringLayout Layout to display string controls.
- * @property useBlackTheme Whether to use full black theme when in dark mode.
- * @property useDynamicColor Whether to use dynamic color for the app theme.
- * @property editModeDefault Whether to enable tuning edit functionality.
- * @property initialTuning The default tuning used when opening the app.
- * @property showReviewPrompt Whether the user can be prompted for a review.
- * @property reviewPromptLaunches Number of times the review prompt has been shown.
- *
- * @author Rohan Khayech
- */
 @Immutable
 data class TunerPreferences(
     val enableStringSelectSound: Boolean = DEFAULT_ENABLE_STRING_SELECT_SOUND,

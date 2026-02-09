@@ -203,10 +203,10 @@ object TuningFileIO {
             return TuningEntry.ChromaticTuning
         }
 
-        val instrument: Instrument? = try {
-            Instrument.valueOf(instr)
+        val instrument: Instrument = try {
+            Instrument.valueOf(instr.uppercase())
         } catch (_: IllegalArgumentException) {
-            Instrument.OTHER
+            Instrument.GUITAR
         }
 
         val categoryString = tuningObj.optString("category")

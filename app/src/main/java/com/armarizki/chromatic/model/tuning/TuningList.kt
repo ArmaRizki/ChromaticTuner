@@ -19,14 +19,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
-/**
- * State holder class which contains lists of favourite and custom tunings.
- *
- * @param initialCurrentTuning Initial current tuning.
- * @param coroutineScope Coroutine scope used to perform filtering actions.
- *
- * @author Rohan Khayech
- */
+
 class TuningList(
     initialCurrentTuning: Tuning? = null,
     coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Default)
@@ -117,7 +110,6 @@ class TuningList(
     /** Available instrument filters and their enabled states. */
     val instrumentFilters = categoryFilter.map { category ->
         Instrument.entries
-            .dropLast(1)
             .associateWith {
                 it.isValidFilterWith(category)
             }

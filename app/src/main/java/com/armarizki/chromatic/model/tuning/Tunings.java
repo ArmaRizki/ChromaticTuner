@@ -3,7 +3,6 @@ package com.armarizki.chromatic.model.tuning;
 
 import static com.armarizki.music.Instrument.BASS;
 import static com.armarizki.music.Instrument.GUITAR;
-import static com.armarizki.music.Instrument.UKULELE;
 import static com.armarizki.music.Tuning.Category.MISC;
 import static com.armarizki.music.Tuning.Category.OPEN;
 import static com.armarizki.music.Tuning.Category.POWER;
@@ -15,13 +14,6 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-/**
- * Static class defining common guitar tunings.
- * 
- * @author Rohan Khayech
- *
- * @noinspection unused
- */
 public final class Tunings {
 
     /** Internal list of common guitar tunings. */
@@ -56,7 +48,6 @@ public final class Tunings {
     public static final Tuning G_MODAL = add(Tuning.fromString("G Modal", GUITAR, MISC, "D4 C4 G3 D3 G2 D2"));
     public static final Tuning ALL_4TH = add(Tuning.fromString("All 4th", GUITAR, MISC, "F4 C4 G3 D3 A2 E2"));
     public static final Tuning NST = add(Tuning.fromString("New Standard Tuning", GUITAR, MISC, "G4 E4 A3 D3 G2 C2"));
-    public static final Tuning UKULELE_STANDARD = add(Tuning.fromString("Standard", UKULELE, Category.COMMON, "A4 E4 C4 G4"));
 
     /** Adds the specified tuning to the list and returns it. */
     private static Tuning add(Tuning tuning) {
