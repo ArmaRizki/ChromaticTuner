@@ -46,26 +46,6 @@ import com.armarizki.chromatic.view.components.StringControls
 import com.armarizki.chromatic.view.components.TuningSelector
 import com.armarizki.chromatic.view.theme.AppTheme
 
-/**
- * UI screen used to tune individual strings and the tuning
- * itself up and down, as well as select from favourite tunings.
- *
- * @param tuning Guitar tuning used for comparison.
- * @param chromatic Whether the chromatic tuning mode is enabled.
- * @param selectedNote The selected note in chromatic mode.
- * @param favTunings Set of tunings marked as favourite by the user.
- * @param getCanonicalName Gets the name of the tuning if it is saved as a custom tuning.
- * @param onTuneUpString Called when a string is tuned up.
- * @param onTuneDownString Called when a string is tuned down.
- * @param onTuneUpTuning Called when the tuning is tuned up.
- * @param onTuneDownTuning Called when the tuning is tuned down.
- * @param onSelectNote Called when a note is selected in chromatic mode.
- * @param onOpenTuningSelector Called when the user opens the tuning selector screen.
- * @param onDismiss Called when the screen is dismissed.
- * @param onSettingsPressed Called when the settings button is pressed.
- *
- * @author Rohan Khayech
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConfigureTuningScreen(
@@ -161,26 +141,5 @@ fun ConfigureTuningScreen(
                 )
             }
         }
-    }
-}
-
-@CompactOrientationThemePreview
-@Composable
-private fun Preview() {
-    AppTheme {
-        ConfigureTuningScreen(
-            tuning = TuningEntry.InstrumentTuning(Tunings.HALF_STEP_DOWN),
-            chromatic = false,
-            selectedNote = -29,
-            favTunings = remember { mutableStateOf(emptySet()) },
-            getCanonicalName = { this.tuning.toString() },
-            onTuneUpString = {},
-            onTuneDownString = {},
-            onTuneUpTuning = {},
-            onTuneDownTuning = {},
-            onOpenTuningSelector = {},
-            onDismiss = {},
-            onSelectNote = {}
-        ) {}
     }
 }

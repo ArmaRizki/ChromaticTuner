@@ -11,83 +11,113 @@ import com.rohankhayech.android.util.ui.theme.m3.trueDark
 
 val Green500 = Color(0xFF4CAF50)
 val Green700 = Color(0xFF388E3C)
-val Blue500 = Color(0xFF2196F3)
+val Blue500 = Color(0xFF03A0D3)
 val Blue700 = Color(0xFF1976D2)
 val Red500 = Color(0xFFF44336)
 val Red700 = Color(0xFFD32F2F)
 val Yellow500 = Color(0xFFD9BF00)
 
-private val primaryLight = Green500
-private val onPrimaryLight = Color(0xFFFFFFFF)
-private val primaryContainerLight = Color(0xFFBCF0B4)
-private val onPrimaryContainerLight = Color(0xFF235024)
-private val secondaryLight = Color(0xFF3B6939)
-private val onSecondaryLight = Color(0xFFFFFFFF)
-private val secondaryContainerLight = Color(0xFFBCF0B4)
-private val onSecondaryContainerLight = Color(0xFF245024)
-private val tertiaryLight = Color(0xFF36618E)
-private val onTertiaryLight = Color(0xFFFFFFFF)
-private val tertiaryContainerLight = Color(0xFFD1E4FF)
-private val onTertiaryContainerLight = Color(0xFF194975)
-private val errorLight = Color(0xFFBA1A1A)
-private val onErrorLight = Color(0xFFFFFFFF)
-private val errorContainerLight = Color(0xFFFFDAD6)
-private val onErrorContainerLight = Color(0xFF93000A)
-private val backgroundLight = Color(0xFFF7FBF1)
-private val onBackgroundLight = Color(0xFF191D17)
-private val surfaceLight = Color(0xFFF7FBF1)
-private val onSurfaceLight = Color(0xFF191D17)
-private val surfaceVariantLight = Color(0xFFDEE5D8)
-private val onSurfaceVariantLight = Color(0xFF424940)
-private val outlineLight = Color(0xFF72796F)
-private val outlineVariantLight = Color(0xFFC2C9BD)
+val BluePrimary = Color(0xFF03A0D3)
+val BluePrimaryDark = Color(0xFF0284B3)
+val BluePrimaryLight = Color(0xFFB8E9F9)
+
+val BlueSecondary = Color(0xFF1E6F91)
+val BlueSecondaryLight = Color(0xFFCFEAF4)
+
+val BlueTertiary = Color(0xFF355F8C)
+val BlueTertiaryLight = Color(0xFFD6E4F2)
+
+
+private val primaryLight = BluePrimary
+private val onPrimaryLight = Color.White
+private val primaryContainerLight = BluePrimaryLight
+private val onPrimaryContainerLight = Color(0xFF003544)
+
+private val secondaryLight = BlueSecondary
+private val onSecondaryLight = Color.White
+private val secondaryContainerLight = BlueSecondaryLight
+private val onSecondaryContainerLight = Color(0xFF002F3A)
+
+private val tertiaryLight = BlueTertiary
+private val onTertiaryLight = Color.White
+private val tertiaryContainerLight = BlueTertiaryLight
+private val onTertiaryContainerLight = Color(0xFF102A44)
+
+private val backgroundLight = Color(0xFFF6FAFC)
+private val onBackgroundLight = Color(0xFF0E1D23)
+
+private val surfaceLight = backgroundLight
+private val onSurfaceLight = onBackgroundLight
+
+private val surfaceVariantLight = Color(0xFFDDE7EC)
+private val onSurfaceVariantLight = Color(0xFF3F4F55)
+
+private val outlineLight = Color(0xFF6E7F86)
+private val outlineVariantLight = Color(0xFFC0CCD1)
 private val scrimLight = Color(0xFF000000)
 private val inverseSurfaceLight = Color(0xFF2D322C)
 private val inverseOnSurfaceLight = Color(0xFFEFF2E9)
-private val inversePrimaryLight = Color(0xFFA1D39A)
+private val inversePrimaryLight = Color(0xFF8ED0E6)
 private val surfaceDimLight = Color(0xFFD8DBD2)
 private val surfaceBrightLight = Color(0xFFF7FBF1)
 private val surfaceContainerLowestLight = Color(0xFFFFFFFF)
-private val surfaceContainerLowLight = Color(0xFFF1F5EC)
-private val surfaceContainerLight = Color(0xFFECEFE6)
-private val surfaceContainerHighLight = Color(0xFFE6E9E0)
-private val surfaceContainerHighestLight = Color(0xFFE0E4DB)
+private val surfaceContainerLowLight = Color(0xFFF0F7FA)
+private val surfaceContainerLight = Color(0xFFE8F3F8)
+private val surfaceContainerHighLight = Color(0xFFDDEEF5)
+private val surfaceContainerHighestLight = Color(0xFFD3E9F3)
 
-private val primaryDark = Green500
-private val onPrimaryDark = Color(0xFF0A390F)
-private val primaryContainerDark = Color(0xFF235024)
-private val onPrimaryContainerDark = Color(0xFFBCF0B4)
-private val secondaryDark = Color(0xFFA1D39A)
-private val onSecondaryDark = Color(0xFF0A390F)
-private val secondaryContainerDark = Color(0xFF245024)
-private val onSecondaryContainerDark = Color(0xFFBCF0B4)
-private val tertiaryDark = Blue500
-private val onTertiaryDark = Color(0xFF003258)
-private val tertiaryContainerDark = Color(0xFF194975)
-private val onTertiaryContainerDark = Color(0xFFD1E4FF)
+
+private val primaryDark = BluePrimary
+private val onPrimaryDark = Color(0xFF001E2A)
+private val primaryContainerDark = Color(0xFF004E66)
+private val onPrimaryContainerDark = Color(0xFFB8E9F9)
+
+private val secondaryDark = Color(0xFF9ED5E6)
+private val onSecondaryDark = Color(0xFF003543)
+private val secondaryContainerDark = Color(0xFF1E6F91)
+private val onSecondaryContainerDark = Color(0xFFCFEAF4)
+
+private val tertiaryDark = Color(0xFFB5CFEA)
+private val onTertiaryDark = Color(0xFF1A3048)
+private val tertiaryContainerDark = Color(0xFF355F8C)
+private val onTertiaryContainerDark = Color(0xFFD6E4F2)
+
+private val backgroundDark = Color(0xFF0B1A20)
+private val onBackgroundDark = Color(0xFFDDE7EC)
+
+private val surfaceDark = backgroundDark
+private val onSurfaceDark = onBackgroundDark
+
+private val surfaceVariantDark = Color(0xFF3F4F55)
+private val onSurfaceVariantDark = Color(0xFFC0CCD1)
+
+private val outlineDark = Color(0xFF8A9BA2)
+private val outlineVariantDark = Color(0xFF3F4F55)
+
+private val scrimDark = Color(0xFF000000)
+private val inverseSurfaceDark = Color(0xFFE0E4DB)
+private val inverseOnSurfaceDark = Color(0xFF2D322C)
+private val inversePrimaryDark = Color(0xFF1E6F91)
+private val surfaceDimDark = Color(0xFF10140F)
+private val surfaceBrightDark = Color(0xFF363A34)
+private val surfaceContainerLowestDark = Color(0xFF0B0F0A)
+private val surfaceContainerLowDark = Color(0xFF11262E)
+private val surfaceContainerDark = Color(0xFF162E37)
+private val surfaceContainerHighDark = Color(0xFF1B3640)
+private val surfaceContainerHighestDark = Color(0xFF21404B)
+
+// ---- Error colors (Material 3 compliant) ----
+private val errorLight = Color(0xFFBA1A1A)
+private val onErrorLight = Color(0xFFFFFFFF)
+private val errorContainerLight = Color(0xFFFFDAD6)
+private val onErrorContainerLight = Color(0xFF410002)
+
 private val errorDark = Color(0xFFFFB4AB)
 private val onErrorDark = Color(0xFF690005)
 private val errorContainerDark = Color(0xFF93000A)
 private val onErrorContainerDark = Color(0xFFFFDAD6)
-private val backgroundDark = Color(0xFF10140F)
-private val onBackgroundDark = Color(0xFFE0E4DB)
-private val surfaceDark = Color(0xFF10140F)
-private val onSurfaceDark = Color(0xFFE0E4DB)
-private val surfaceVariantDark = Color(0xFF424940)
-private val onSurfaceVariantDark = Color(0xFFC2C9BD)
-private val outlineDark = Color(0xFF8C9388)
-private val outlineVariantDark = Color(0xFF424940)
-private val scrimDark = Color(0xFF000000)
-private val inverseSurfaceDark = Color(0xFFE0E4DB)
-private val inverseOnSurfaceDark = Color(0xFF2D322C)
-private val inversePrimaryDark = Color(0xFF3B6939)
-private val surfaceDimDark = Color(0xFF10140F)
-private val surfaceBrightDark = Color(0xFF363A34)
-private val surfaceContainerLowestDark = Color(0xFF0B0F0A)
-private val surfaceContainerLowDark = Color(0xFF191D17)
-private val surfaceContainerDark = Color(0xFF1D211B)
-private val surfaceContainerHighDark = Color(0xFF272B25)
-private val surfaceContainerHighestDark = Color(0xFF323630)
+
+
 
 /** Light M3 Color Scheme for the application. */
 val LightColorScheme = lightColorScheme(
@@ -170,39 +200,40 @@ val DarkColorScheme = darkColorScheme(
 /** True dark M3 color scheme for the application. */
 val TrueDarkColorScheme = DarkColorScheme.trueDark().copy(
     surface = Color.Black,
-    primary = Green700,
-    tertiary = Blue700
+    background = Color.Black,
+    primary = BluePrimary,
+    secondary = Color(0xFF8ED0E6),
+    tertiary = Color(0xFF9DBBE3)
 )
 
-/** Extra colors for the app. */
+
+/** Extra colors for the app. *//** Extra colors for the app. */
 val MaterialTheme.extColors: ExtendedColorScheme
     @Composable
     get() = if (isLight) extendedLight else extendedDark
 
-/** Extra light theme colors. */
 private val extendedLight = ExtendedColorScheme(
-    green = ColorFamily(
-        primaryLight,
-        onPrimaryLight,
-        primaryContainerLight,
-        onPrimaryContainerLight,
-    ),
-)
-
-/** Extra dark theme colors. */
-private val extendedDark = ExtendedColorScheme(
-    green = ColorFamily(
-        primaryDark,
-        onPrimaryDark,
-        primaryContainerDark,
-        primaryContainerLight,
+    blue = ColorFamily(
+        color = primaryLight,
+        onColor = onPrimaryLight,
+        container = primaryContainerLight,
+        onContainer = onPrimaryContainerLight,
     )
 )
 
-/** Extra colors for the app. */
+private val extendedDark = ExtendedColorScheme(
+    blue = ColorFamily(
+        color = primaryDark,
+        onColor = onPrimaryDark,
+        container = primaryContainerDark,
+        onContainer = onPrimaryContainerDark,
+    )
+)
+
+
 @Immutable
 data class ExtendedColorScheme(
-    val green: ColorFamily
+    val blue: ColorFamily
 )
 
 @Immutable
@@ -212,3 +243,4 @@ data class ColorFamily(
     val container: Color,
     val onContainer: Color
 )
+

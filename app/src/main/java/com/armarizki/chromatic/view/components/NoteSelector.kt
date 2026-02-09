@@ -216,10 +216,10 @@ fun NoteSelectionButton(
     // Animate content color by selected and tuned state.
     val contentColor by animateColorAsState(
         if (selected) {
-            if (tuned) MaterialTheme.extColors.green.onContainer.harmonised()
+            if (tuned) MaterialTheme.extColors.blue.onContainer.harmonised()
             else MaterialTheme.colorScheme.onTertiaryContainer
         }
-        else if (tuned) MaterialTheme.extColors.green.color.harmonised()
+        else if (tuned) MaterialTheme.extColors.blue.color.harmonised()
         else LocalContentColor.current,
         label = "String Button Content Color"
     )
@@ -227,7 +227,7 @@ fun NoteSelectionButton(
     // Animate background color by selected state.
     val backgroundColor by animateColorAsState(
         if (selected) {
-            if (tuned) MaterialTheme.extColors.green.container.harmonised()
+            if (tuned) MaterialTheme.extColors.blue.container.harmonised()
             else MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.60f)
         }
         else MaterialTheme.colorScheme.background,
@@ -262,21 +262,6 @@ private fun Preview() {
 
     PreviewWrapper {
         NoteSelector(
-            modifier = Modifier.padding(vertical = 8.dp),
-            selectedNoteIndex = noteIndex,
-            tuned = false,
-            onSelect = { noteIndex = it }
-        )
-    }
-}
-
-@ThemePreview
-@Composable
-private fun CompactPreview() {
-    var noteIndex by remember { mutableIntStateOf(-29) }
-
-    PreviewWrapper {
-        CompactNoteSelector (
             modifier = Modifier.padding(vertical = 8.dp),
             selectedNoteIndex = noteIndex,
             tuned = false,

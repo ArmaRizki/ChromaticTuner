@@ -95,36 +95,6 @@ import com.armarizki.chromatic.view.components.TuningSelector
 import com.armarizki.chromatic.view.theme.AppTheme
 import com.armarizki.music.Tuning
 
-/**
- * A UI screen that allows selection of a tuning and string and displays the current tuning status.
- *
- * @param compact Whether to use compact layout.
- * @param expanded Whether the current window is expanded width.
- * @param windowSizeClass Size class of the activity window.
- * @param tuning Guitar tuning used for comparison.
- * @param noteOffset The offset between the currently playing note and the selected string.
- * @param selectedString Index of the currently selected string within the tuning.
- * @param tuned Whether each string has been tuned.
- * @param autoDetect Whether the tuner will automatically detect the currently playing string.
- * @param favTunings Set of tunings marked as favourite by the user.
- * @param getCanonicalName Gets the name of the tuning if it is saved as a custom tuning.
- * @param prefs User preferences for the tuner.
- * @param onSelectString Called when a string is selected.
- * @param onSelectTuning Called when a tuning is selected.
- * @param onTuneUpString Called when a string is tuned up.
- * @param onTuneDownString Called when a string is tuned down.
- * @param onTuneUpTuning Called when the tuning is tuned up.
- * @param onTuneDownTuning Called when the tuning is tuned down.
- * @param onAutoChanged Called when the auto detect switch is toggled.
- * @param onTuned Called when the detected note is held in tune.
- * @param onOpenTuningSelector Called when the user opens the tuning selector screen.
- * @param onSettingsPressed Called when the settings button is pressed.
- * @param onConfigurePressed Called when the configure tuning button is pressed.
- * @param editModeEnabled Whether tuning editing is enabled.
- * @param onEditModeChanged Called when the edit mode toggle button is pressed.
- *
- * @author Rohan Khayech
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TunerScreen(
@@ -734,13 +704,6 @@ private fun ExpandedAppBar(
     )
 }
 
-/**
- * Switch control allowing auto detection of string to be enabled/disabled.
- *
- * @param modifier Modifier to be applied to the component.
- * @param autoDetect Whether auto detection is enabled.
- * @param onAutoChanged Called when the switch is toggled.
- */
 @Composable
 private fun AutoDetectSwitch(
     modifier: Modifier = Modifier,
@@ -758,136 +721,5 @@ private fun AutoDetectSwitch(
             modifier = Modifier.paddingFromBaseline(bottom = 6.dp)
         )
         Switch(checked = autoDetect, onCheckedChange = onAutoChanged)
-    }
-}
-
-// PREVIEWS
-
-@Composable
-private fun BasePreview(
-    compact: Boolean = false,
-    windowSizeClass: WindowSizeClass,
-    prefs: TunerPreferences = TunerPreferences(),
-    trueDark: Boolean = false,
-    dynamicColor: Boolean = false,
-) {
-    AppTheme(dynamicColor = dynamicColor, fullBlack = trueDark) {
-        TunerScreen(
-            compact,
-            expanded = false,
-            windowSizeClass,
-            tuning = TuningEntry.InstrumentTuning(Tunings.HALF_STEP_DOWN),
-            noteOffset = remember { mutableDoubleStateOf(1.3) },
-            selectedString = 1,
-            selectedNote = -28,
-            tuned = BooleanArray(6) { it==4 },
-            noteTuned = false,
-            autoDetect = true,
-            chromatic = false,
-            favTunings = remember { mutableStateOf(emptySet()) },
-            getCanonicalName = { this.tuning.toString() },
-            prefs,
-            {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-            editModeEnabled = true,
-            onEditModeChanged = {}
-        )
-    }
-}
-
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
-@ThemePreview
-@Composable
-private fun TunerPreview() {
-    BasePreview(
-        windowSizeClass = WindowSizeClass.calculateFromSize(DpSize(411.dp, 891.dp)),
-    )
-}
-
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
-@DarkPreview
-@Composable
-private fun TrueDarkPreview() {
-    BasePreview(
-        trueDark = true,
-        windowSizeClass = WindowSizeClass.calculateFromSize(DpSize(411.dp, 891.dp))
-    )
-}
-
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
-@PreviewDynamicColors
-@Preview(name = "Red", wallpaper = RED_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Blue", wallpaper = BLUE_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Green", wallpaper = GREEN_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Yellow", wallpaper = YELLOW_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Composable
-private fun DynamicPreview() {
-    BasePreview(
-        dynamicColor = true,
-        windowSizeClass = WindowSizeClass.calculateFromSize(DpSize(411.dp, 891.dp)),
-    )
-}
-
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
-@CompactThemePreview
-@Composable
-private fun CompactPreview() {
-    BasePreview(
-        compact = true,
-        windowSizeClass = WindowSizeClass.calculateFromSize(DpSize(1.dp, 1.dp)),
-    )
-}
-
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
-@LandscapePreview
-@Composable
-private fun LandscapePreview() {
-    BasePreview(
-        windowSizeClass = WindowSizeClass.calculateFromSize(DpSize(891.dp, 411.dp))
-    )
-}
-
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
-@LargeFontPreview
-@Composable
-private fun LargeFontPreview() {
-    BasePreview(
-        windowSizeClass = WindowSizeClass.calculateFromSize(DpSize(411.dp, 891.dp)),
-    )
-}
-
-@Preview
-@Composable
-private fun PermissionRequestPreview() {
-    AppTheme {
-        TunerPermissionScreen(
-            canRequest = true,
-            onSettingsPressed = {},
-            onRequestPermission = {},
-            onOpenPermissionSettings = {}
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun PermissionDeniedPreview() {
-    AppTheme {
-        TunerPermissionScreen(
-            canRequest = false,
-            onSettingsPressed = {},
-            onRequestPermission = {},
-            onOpenPermissionSettings = {}
-        )
-    }
-}
-
-@Preview
-@Composable
-private fun ErrorPreview() {
-    AppTheme {
-        TunerErrorScreen (
-            error = Exception("Something went wrong."),
-            onSettingsPressed = {},
-        )
     }
 }

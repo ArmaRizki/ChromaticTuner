@@ -13,13 +13,6 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/**
- * The tuning class stores a set of tuned strings on a guitar or other stringed instrument.
- * It also provides commonly used 6-string tunings for convenience.
- * This class is immutable.
- *
- * @author Rohan Khayech
- */
 @Immutable
 public final class Tuning implements Iterable<GuitarString> {
 
@@ -64,26 +57,12 @@ public final class Tuning implements Iterable<GuitarString> {
         this(null, instrument, null, strings);
     }
 
-    /**
-     * Constructs a new guitar tuning.
-     * @param name Name of the tuning. Can be null.
-     * @param instrument The instrument the tuning is for.
-     * @param category The category of tuning.
-     * @param strings The guitar strings to include in this tuning, from high to low. (eg. EBGDAE)
-     * @throws NullPointerException If the specified instrument, array of strings or any string is null.
-     */
     public Tuning(String name, Instrument instrument, Category category, GuitarString... strings) {
         this(name, instrument, category, Arrays.asList(
             Objects.requireNonNull(strings, "Array of strings cannot be null.")
         ));
     }
 
-    /**
-     * Constructs a new guitar tuning.
-     * @param instrument The instrument the tuning is for.
-     * @param strings The guitar strings to include in this tuning, from high to low. (eg. EBGDAE)
-     * @throws NullPointerException If the specified list of strings or any string is null.
-     */
     public Tuning(Instrument instrument, List<GuitarString> strings) {
         this(null, instrument, null, strings);
     }

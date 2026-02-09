@@ -40,24 +40,6 @@ import com.armarizki.chromatic.view.components.SectionLabel
 import com.armarizki.chromatic.view.theme.AppTheme
 import com.armarizki.music.Tuning
 
-/**
- * A UI screen that displays and allows selection of the user's tuner preferences.
- *
- * @param prefs The tuner preferences.
- * @param pinnedTuning The full name of the currently pinned tuning.
- * @param onSelectStringLayout Called when the user selects a string control layout.
- * @param onSelectDisplayType Called when the user selects a tuning display type.
- * @param onEnableStringSelectSound Called when the user toggles the string select sound.
- * @param onEnableInTuneSound Called when the user toggles the in-tune sound.
- * @param onSetUseBlackTheme Called when the user toggles the full black theme.
- * @param onSetUseDynamicColor Called when the user toggles the dynamic color feature.
- * @param onToggleEditModeDefault Called when the user toggles the edit mode feature.
- * @param onSelectInitialTuning Called when the user selects the initial tuning type.
- * @param onAboutPressed Called when the user presses the about option.
- * @param onBackPressed Called when the user presses the back navigation button.
- *
- * @author Rohan Khayech
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
@@ -284,27 +266,5 @@ fun SettingsScreen(
                 modifier = Modifier.clickable(onClick = onAboutPressed)
             )
         }
-    }
-}
-
-// Preview
-@ThemePreview
-@Composable
-private fun Preview() {
-    AppTheme {
-        SettingsScreen(
-            prefs = TunerPreferences(),
-            pinnedTuning = Tuning.STANDARD.fullName,
-            onSelectDisplayType = {},
-            onSelectStringLayout = {},
-            onEnableStringSelectSound = {},
-            onEnableInTuneSound = {},
-            onSetUseBlackTheme = {},
-            onSetUseDynamicColor = {},
-            onToggleEditModeDefault = {},
-            onSelectInitialTuning = {},
-            onAboutPressed = {},
-            onBackPressed = {}
-        )
     }
 }

@@ -1,4 +1,3 @@
-
 package com.armarizki.music;
 
 import java.util.Arrays;
@@ -18,11 +17,6 @@ public final class Notes {
         Arrays.asList("C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B")
     );
 
-    /**
-     * Returns the pitch of the specified note.
-     * @param noteIndex The index of the note, defined by the number of semitones from note A4 to the specified note.
-     * @return The pitch of the specified note, in Hz.
-     */
     public static double getPitch(int noteIndex) {
         if (noteIndex == 0) return A4_PITCH;
         return Math.pow(2, noteIndex/12.0) * A4_PITCH;
