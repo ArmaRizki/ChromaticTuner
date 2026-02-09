@@ -6,9 +6,12 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.datastore.preferences.core.doublePreferencesKey
+
 
 @Immutable
 data class TunerPreferences(
+    val a4Pitch: Double = DEFAULT_A4_PITCH,
     val enableStringSelectSound: Boolean = DEFAULT_ENABLE_STRING_SELECT_SOUND,
     val enableInTuneSound: Boolean = DEFAULT_IN_TUNE_SOUND,
     val displayType: TuningDisplayType = DEFAULT_DISPLAY_TYPE,
@@ -21,7 +24,7 @@ data class TunerPreferences(
     val reviewPromptLaunches: Int = 0
 ) {
     companion object {
-        // Keys
+        val A4_PITCH_KEY = doublePreferencesKey("a4_pitch")
         val ENABLE_STRING_SELECT_SOUND_KEY = booleanPreferencesKey("enable_string_select_sound")
         val ENABLE_IN_TUNE_SOUND_KEY = booleanPreferencesKey("enable_in_tune_sound")
         val DISPLAY_TYPE_KEY = stringPreferencesKey("display_type")
@@ -34,6 +37,7 @@ data class TunerPreferences(
         val REVIEW_PROMPT_LAUNCHES_KEY = stringPreferencesKey("review_prompt_launches")
 
         // Defaults
+        const val DEFAULT_A4_PITCH = 440.0
         const val DEFAULT_ENABLE_STRING_SELECT_SOUND = true
         const val DEFAULT_IN_TUNE_SOUND = true
         val DEFAULT_DISPLAY_TYPE = TuningDisplayType.SIMPLE
@@ -52,6 +56,7 @@ data class TunerPreferences(
          */
         fun fromAndroidPreferences(prefs: Preferences): TunerPreferences {
             return TunerPreferences(
+                a4Pitch = prefs[A4_PITCH_KEY] ?: DEFAULT_A4_PITCH,
                 enableStringSelectSound = prefs[ENABLE_STRING_SELECT_SOUND_KEY] ?: DEFAULT_ENABLE_STRING_SELECT_SOUND,
                 enableInTuneSound = prefs[ENABLE_IN_TUNE_SOUND_KEY] ?: DEFAULT_IN_TUNE_SOUND,
                 displayType = prefs[DISPLAY_TYPE_KEY]?.let { TuningDisplayType.valueOf(it) } ?: DEFAULT_DISPLAY_TYPE,

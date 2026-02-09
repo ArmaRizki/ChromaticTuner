@@ -115,6 +115,7 @@ class SettingsActivity : ComponentActivity() {
                             onSetUseBlackTheme = vm::setUseBlackTheme,
                             onSetUseDynamicColor = vm::setUseDynamicColor,
                             onSelectInitialTuning = vm::setInitialTuning,
+                            onSetA4Pitch = vm::setA4Pitch,
                             onAboutPressed = ::openAboutScreen,
                             onBackPressed = ::finish
                         )
@@ -181,6 +182,10 @@ private class SettingsActivityViewModel(
     /** Sets whether the string select sound is [enabled][enable]. */
     fun setEnableStringSelectSound(enable: Boolean) {
         setPreference(TunerPreferences.ENABLE_STRING_SELECT_SOUND_KEY, enable)
+    }
+
+    fun setA4Pitch(value: Double)
+    { setPreference(TunerPreferences.A4_PITCH_KEY, value)
     }
 
     /** Sets whether the in tune sound is [enabled][enable]. */

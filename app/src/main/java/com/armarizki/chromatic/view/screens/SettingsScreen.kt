@@ -39,6 +39,12 @@ import com.armarizki.chromatic.model.preferences.TuningDisplayType
 import com.armarizki.chromatic.view.components.SectionLabel
 import com.armarizki.chromatic.view.theme.AppTheme
 import com.armarizki.music.Tuning
+import androidx.compose.material3.Slider
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
+
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -53,6 +59,7 @@ fun SettingsScreen(
     onSetUseDynamicColor: (Boolean) -> Unit,
     onToggleEditModeDefault: (Boolean) -> Unit,
     onSelectInitialTuning: (InitialTuningType) -> Unit,
+    onSetA4Pitch: (Double) -> Unit,
     onAboutPressed: () -> Unit,
     onBackPressed: () -> Unit,
 ) {
@@ -182,6 +189,38 @@ fun SettingsScreen(
                 },
                 modifier = Modifier.clickable { onEnableInTuneSound(!prefs.enableInTuneSound) }
             )
+
+            HorizontalDivider()
+
+            SectionLabel(title = "Reference Pitch (A4)")
+
+            ListItem(
+                headlineContent = { Text("A4 Reference") },
+                supportingContent = {
+                    Column {
+                        Text("${prefs.a4Pitch.toInt()} Hz")
+
+                        Slider(
+                            value = prefs.a4Pitch.toFloat(),
+                            onValueChange = {
+                                onSetA4Pitch(it.toDouble())
+                            },
+                            onValueChangeFinished = {
+                                onSetA4Pitch(prefs.a4Pitch)
+                            },
+                            valueRange = 420f..460f,
+                            steps = 40
+                        )
+                    }
+                }
+            )
+
+
+
+
+
+
+
 
             HorizontalDivider()
 

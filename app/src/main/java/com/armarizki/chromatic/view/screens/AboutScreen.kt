@@ -95,28 +95,29 @@ fun AboutScreen(
                 .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal))
                 .verticalScroll(rememberScrollState())
         ) {
-            // Version and Copyright
+
             SectionLabel(stringResource(R.string.about))
-                Text(
-                    "${stringResource(R.string.app_name)} v${BuildConfig.VERSION_NAME}",
-                    modifier = Modifier.padding(top = 16.dp).padding(horizontal = 16.dp),
-                    style = MaterialTheme.typography.bodyMedium
-                )
-                Text(
-                    stringResource(
-                        R.string.dist_desc,
-                        stringResource(R.string.dist_platform)
-                    ),
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = ContentAlphaMedium)
-                )
-                Text(
-                    "© ${stringResource(R.string.copyright)} 2025 Rohan Khayech",
-                    modifier = Modifier.padding(bottom = 16.dp).padding(horizontal = 16.dp),
-                    style = MaterialTheme.typography.bodyMedium
-                )
+
+            Text(
+                "${stringResource(R.string.app_name)} v${BuildConfig.VERSION_NAME}",
+                modifier = Modifier.padding(top = 16.dp).padding(horizontal = 16.dp),
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+            Text(
+                "© ${stringResource(R.string.copyright)} 2025 Rohan Khayech",
+                modifier = Modifier.padding(horizontal = 16.dp),
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+            Text(
+                "Developed and Modified by Arma Rizki",
+                modifier = Modifier.padding(bottom = 16.dp).padding(horizontal = 16.dp),
+                style = MaterialTheme.typography.bodyMedium
+            )
+
             HorizontalDivider()
+
 
             // License
             SectionLabel(stringResource(R.string.licence))
@@ -126,8 +127,8 @@ fun AboutScreen(
                 style = MaterialTheme.typography.bodyMedium,
             )
             HorizontalDivider()
-            LinkListItem(text = stringResource(R.string.licence_terms), url = "https://github.com/rohankhayech/Choona/blob/main/LICENSE")
-            LinkListItem(text = stringResource(R.string.source_code), url = "https://github.com/rohankhayech/Choona")
+            LinkListItem(text = stringResource(R.string.licence_terms), url = "https://github.com/ArmaRizki/ChromaticTuner/blob/main/LICENSE")
+            LinkListItem(text = stringResource(R.string.source_code), url = "https://github.com/ArmaRizki/ChromaticTuner")
 
             ListItem(modifier = Modifier.clickable(onClick = onLicencesPressed), headlineContent = {
                 Text(stringResource(R.string.third_party_licences))
@@ -135,48 +136,11 @@ fun AboutScreen(
             HorizontalDivider()
 
             SectionLabel(stringResource(R.string.privacy))
-            LinkListItem(text = stringResource(R.string.privacy_policy), url = "https://github.com/rohankhayech/Choona/blob/main/PRIVACY.md")
-
-            SectionLabel(stringResource(R.string.help_feedback))
-            LinkListItem(text = stringResource(R.string.send_feedback), url = "https://github.com/rohankhayech/Choona/issues/new/choose")
-
-            @Suppress("KotlinConstantConditions")
-            if (BuildConfig.FLAVOR == "play") {
-                LinkListItem(
-                    text = stringResource(R.string.rate_app),
-                    url = "https://play.google.com/store/apps/details?id=com.rohankhayech.choona"
-                )
-
-                AnimatedVisibility(prefs.reviewPromptLaunches in 1..REVIEW_PROMPT_ATTEMPTS && (prefs.showReviewPrompt)) {
-                    ListItem(
-                        headlineContent = { Text(stringResource(R.string.pref_review_opt_out)) },
-                        supportingContent = { Text(stringResource(R.string.pref_review_opt_out_desc)) },
-                        trailingContent = {
-                            val optedOutMsg = stringResource(R.string.review_opted_out)
-                            Switch(
-                                checked = !prefs.showReviewPrompt,
-                                onCheckedChange = {
-                                    onReviewOptOut()
-
-                                    coroutineScope.launch {
-                                        snackbarHost.showSnackbar(
-                                            message = optedOutMsg,
-                                            duration = SnackbarDuration.Short
-                                        )
-                                    }
-                                }
-                            )
-                        }
-                    )
-                }
-            }
+            LinkListItem(text = stringResource(R.string.privacy_policy), url = "https://github.com/ArmaRizki/ChromaticTuner/blob/main/PRIVACY.md")
         }
     }
 }
 
-/**
- * List item with the specified [text] that directs to the specified [url] when pressed.
- */
 @Composable
 private fun LinkListItem(text: String, url: String) {
     val uriHandler = LocalUriHandler.current
@@ -186,10 +150,6 @@ private fun LinkListItem(text: String, url: String) {
     HorizontalDivider()
 }
 
-/**
- * UI screen showing the licences of the apps dependencies.
- * @param onBackPressed Called when the back navigation button is pressed.
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LicencesScreen(

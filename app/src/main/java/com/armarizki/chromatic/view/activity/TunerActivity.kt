@@ -59,12 +59,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.billthefarmer.mididriver.GeneralMidiConstants
 
-/**
- * Activity that allows the user to select a tuning and tune their guitar, displaying a comparison of played notes
- * and the correct notes of the strings in the tuning.
- *
- * @author Rohan Khayech
- */
 class TunerActivity : ComponentActivity() {
 
     /** View model used to hold the current tuner state. */
@@ -149,11 +143,23 @@ class TunerActivity : ComponentActivity() {
 
         reviewController = ReviewControllerImpl(this)
 
-        // Set UI content.
+
         setContent {
             val prefs by prefs.collectAsStateWithLifecycle(initialValue = TunerPreferences())
 
-            AppTheme(fullBlack = prefs.useBlackTheme, dynamicColor = prefs.useDynamicColor) {
+            LaunchedEffect(prefs.a4Pitch) {
+                vm.tuner.setA4Pitch(prefs.a4Pitch)
+            }
+
+            AppTheme(
+                fullBlack = prefs.useBlackTheme,
+                dynamicColor = prefs.useDynamicColor
+            ) {
+                // UI kamu lanjut di sini
+            }
+
+
+        AppTheme(fullBlack = prefs.useBlackTheme, dynamicColor = prefs.useDynamicColor) {
                 val granted by ph.granted.collectAsStateWithLifecycle()
                 val error by vm.tuner.error.collectAsStateWithLifecycle()
                 if (granted && error == null) {

@@ -17,14 +17,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-/**
- * The Guitar Tuner class is responsible for listening to incoming microphone audio
- * and comparing the currently playing note with the strings in the tuning.
- *
- * @param tuning The guitar tuning used for comparison.
- *
- * @author Rohan Khayech
- */
 class Tuner(
     tuning: Tuning = Tuning.STANDARD
 ) {
@@ -32,17 +24,17 @@ class Tuner(
     companion object {
 
         /** Threshold in semitones that note offset must be below to be considered in tune. */
-        const val TUNED_OFFSET_THRESHOLD = 0.15
+        const val TUNED_OFFSET_THRESHOLD = 0.05
 
         /** Time in ms that a note must be held below the threshold for before being considered in tune. */
         const val TUNED_SUSTAIN_TIME = 900
 
         // Audio Dispatcher Constants
         /** Microphone sample rate. */
-        private const val SAMPLE_RATE = 22050
+        private const val SAMPLE_RATE = 44100
 
         /** Audio buffer size. */
-        private const val AUDIO_BUFFER_SIZE = 1024
+        private const val AUDIO_BUFFER_SIZE = 2048
 
         /** Index of the lowest detectable note. */
         val LOWEST_NOTE = Notes.getIndex("D1")
@@ -107,6 +99,15 @@ class Tuner(
 
     /** Mutable backing property for [error]. */
     private val _error = MutableStateFlow<Exception?>(null)
+
+    /** Reference pitch for A4 (Hz). */
+    private val _a4Pitch = MutableStateFlow(440.0)
+    val a4Pitch = _a4Pitch.asStateFlow()
+
+    fun setA4Pitch(value: Double) {
+        _a4Pitch.update { value }
+    }
+
 
     /** Error preventing the tuner from running. `null` if no error has occurred. */
     val error = _error.asStateFlow()
@@ -222,9 +223,6 @@ class Tuner(
         _chromatic.update { on }
     }
 
-    /**
-     * Checks if any strings in the [new][newTuning] tuning are the same as in the [old][oldTuning] tuning and allows them to keep their tuned status.
-     */
     private fun updateTunedStatus(oldTuning: Tuning, newTuning: Tuning) {
         _tuned.update {
             if (oldTuning.numStrings() != newTuning.numStrings()) {
@@ -241,16 +239,11 @@ class Tuner(
         }
     }
 
-    /**
-     * Processes incoming pitch detection [results][result] and updates the offset
-     * between the currently playing note and the root note of the selected string.
-     */
     fun processPitch(result: PitchDetectionResult) {
         if (result.isPitched) {
-            // Calc note playing.
-            val notePlaying = Notes.getOffsetFromA4(result.pitch.toDouble())
+            val a4 = _a4Pitch.value
+            val notePlaying = Notes.getOffsetFromA4(result.pitch.toDouble(), a4)
 
-            // Detect closest string/note in auto mode.
             if (autoDetect.value) {
                 if (chromatic.value) {
                     val closestNote = notePlaying.roundToInt()
@@ -286,15 +279,6 @@ class Tuner(
         return notePlaying - noteIndex
     }
 
-    /**
-     * Starts listening to incoming audio and begins note comparison.
-     * This process must be stopped by calling [stop] when finished.
-     *
-     * @param ph The Android runtime permission handler.
-     * @throws IllegalStateException If the RECORD_AUDIO permission is not granted, or the tuner has already started.
-     * @throws TunerException If the tuner fails to start due to another error.
-     *                        The [error] property will also be set with this exception.
-     */
     @Throws(IllegalStateException::class, TunerException::class)
     fun start(ph: PermissionHandler) {
         check(!running) { "Tuner already started." }
@@ -312,12 +296,13 @@ class Tuner(
 
                 // Setup and add pitch processor.
                 val pdh = PitchDetectionHandler { result, _ -> processPitch(result) }
+                val a4 = _a4Pitch.value
                 val pitchProcessor = PitchProcessor(
                     AMDF(
                         sampleRate.toFloat(),
                         bufferSize,
-                        Notes.getPitch(LOWEST_NOTE),
-                        Notes.getPitch(HIGHEST_NOTE)
+                        Notes.getPitch(LOWEST_NOTE, a4),
+                        Notes.getPitch(HIGHEST_NOTE, a4)
                     ),
                     pdh
                 )

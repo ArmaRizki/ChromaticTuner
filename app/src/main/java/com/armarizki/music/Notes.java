@@ -7,104 +7,79 @@ import java.util.Objects;
 
 public final class Notes {
 
-    /** The frequency of note A4 in Hz. */
-    public static final double A4_PITCH = 440;
+    public static final double DEFAULT_A4_PITCH = 440.0;
 
-    /** The MIDI number of note A4. */
     public static final int A4_MIDI_NOTE_NUMBER = 69;
 
     public static final List<String> NOTE_SYMBOLS = Collections.unmodifiableList(
-        Arrays.asList("C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B")
+            Arrays.asList("C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B")
     );
 
+    private Notes() {
+    }
+
+    public static double getPitch(int noteIndex, double a4Pitch) {
+        return Math.pow(2.0, noteIndex / 12.0) * a4Pitch;
+    }
+
+    public static double getOffsetFromA4(double pitch, double a4Pitch) {
+        return 12.0 * (Math.log(pitch / a4Pitch) / Math.log(2.0));
+    }
+
+    public static int getIndex(double pitch, double a4Pitch) {
+        return (int) Math.round(getOffsetFromA4(pitch, a4Pitch));
+    }
+
+
     public static double getPitch(int noteIndex) {
-        if (noteIndex == 0) return A4_PITCH;
-        return Math.pow(2, noteIndex/12.0) * A4_PITCH;
+        return getPitch(noteIndex, DEFAULT_A4_PITCH);
     }
 
-    /**
-     * Finds the closest note corresponding to the given pitch.
-     * @param pitch The pitch to find the note index of.
-     * @return The index of the corresponding note, defined by the number of semitones from note A4 to the corresponding note.
-     */
-    public static int getIndex(double pitch) {
-        return (int)Math.round(getOffsetFromA4(pitch));
-    }
-
-    /**
-     * Finds the offset from note A4 to the specified note.
-     * @param pitch The pitch to find the offset of.
-     * @return The exact offset of the corresponding note, defined by the number of semitones from note A4 to the corresponding note.
-     */
     public static double getOffsetFromA4(double pitch) {
-        return 12*(Math.log(pitch/A4_PITCH)/Math.log(2));
+        return getOffsetFromA4(pitch, DEFAULT_A4_PITCH);
     }
 
-    /**
-     * Returns the index of the note represented by the given string.
-     * @param note A string representing the note, containing a letter, an optional sharp symbol and the octave (eg. "E2" or "A#4").
-     * @return The index of the specified note, defined by the number of semitones from note A4 to the specified note.
-     * @throws IllegalArgumentException If the note symbol string does not represent a valid note.
-     * @throws NullPointerException If the note symbol string is null.
-     */
+    public static int getIndex(double pitch) {
+        return getIndex(pitch, DEFAULT_A4_PITCH);
+    }
+
     public static int getIndex(String note) {
         Objects.requireNonNull(note, "Note symbol cannot be null.");
+
         int len = note.length();
-        if (len < 2 || len > 3) throw new IllegalArgumentException("Invalid note symbol.");
+        if (len < 2 || len > 3) {
+            throw new IllegalArgumentException("Invalid note symbol.");
+        }
 
         int offset = getOffsetWithinOctave(getRootNote(note));
+
         try {
             int octave = getOctave(note);
-            return (octave-4)*12 + offset;
+            return (octave - 4) * 12 + offset;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Invalid note symbol.", e);
         }
-
-
     }
 
-    /**
-     * Returns the offset of the note within the octave.
-     * @param rootNote The symbol representing the note, including a letter and an optional sharp symbol (eg. "E or A#").
-     * @return The offset of the note within the octave.
-     * @throws IllegalArgumentException If the note symbol string does not represent a valid note.
-     */
-    private static int getOffsetWithinOctave(String rootNote) {
-        int len = rootNote.length();
-        if (len < 1 || len > 2) throw new IllegalArgumentException("Invalid note symbol.");
-
-        int letterIndex = NOTE_SYMBOLS.indexOf(rootNote);
-        if (letterIndex != -1) {
-            return letterIndex - 9;
-        } else throw new IllegalArgumentException("Invalid note symbol.");
-    }
-
-    /**
-     * Returns the note symbol representing the note with the specified index.
-     * @param noteIndex The index of the note, defined by the number of semitones from note A4 to the specified note.
-     * @return The note symbol representing the note with the specified index.
-     */
     public static String getSymbol(int noteIndex) {
-        int octave = 4 + Math.floorDiv(noteIndex+9, 12);
-        return NOTE_SYMBOLS.get(Math.floorMod(noteIndex+9, 12)) + octave;
+        int octave = 4 + Math.floorDiv(noteIndex + 9, 12);
+        int noteInOctave = Math.floorMod(noteIndex + 9, 12);
+        return NOTE_SYMBOLS.get(noteInOctave) + octave;
     }
 
-    /**
-     * Returns the root note within the octave of the specified note.
-     * @param note A string representing the note, containing a letter, an optional sharp symbol and the octave (eg. "E2" or "A#4").
-     * @return The symbol representing the root note, including a letter and an optional sharp symbol (eg. "E or A#").
-     */
     public static String getRootNote(String note) {
-        return note.substring(0, note.length()-1);
+        return note.substring(0, note.length() - 1);
     }
 
-    /**
-     * Returns the octave of the specified note.
-     * @param note A string representing the note, containing a letter, an optional sharp symbol and the octave (eg. "E2" or "A#4").
-     * @return The octave of the note.
-     * @throws NumberFormatException If the note string does not end with a valid octave number.
-     */
     public static int getOctave(String note) {
         return Integer.parseInt(note.substring(note.length() - 1));
+    }
+
+    private static int getOffsetWithinOctave(String rootNote) {
+        int index = NOTE_SYMBOLS.indexOf(rootNote);
+        if (index == -1) {
+            throw new IllegalArgumentException("Invalid note symbol.");
+        }
+        return index - 9;
     }
 }

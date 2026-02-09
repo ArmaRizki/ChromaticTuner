@@ -70,18 +70,6 @@ import com.armarizki.music.Notes
 
 const val SliderInactiveTrackAlpha = 0.24f
 
-/**
- * UI component consisting of a visual meter and
- * text label displaying the current tuning [offset][noteOffset].
- *
- * @param noteIndex The index of the currently selected/detected note.
- * @param noteOffset The offset between the currently playing note and the selected string.
- * @param displayType Type of tuning offset value to display.
- * @param showNote Whether to display the note and octave in the label.
- * @param onTuned Called when the detected note is held in tune.
- *
- * @author Rohan Khayech
- */
 @Composable
 fun TuningDisplay(
     noteIndex: Int,
@@ -173,14 +161,6 @@ fun TuningDisplay(
     }
 }
 
-/**
- * Meter visually displaying the current tuning offset.
- *
- * @param indicatorPosition Position of the indicator on the track, as a percentage value from -1.0 (leftmost) to 1.0 (rightmost).
- * @param indicatorSize Size of the indicator as a percentage value from 0.0 (no width) to 1.0 (full width of meter).
- * @param color Color of the indicator and track.
- * @param labelContent Label to display inside the meter arc.
- */
 @Composable
 private fun TuningMeter(
     indicatorPosition: Float,
@@ -210,14 +190,6 @@ private fun TuningMeter(
     }
 }
 
-/**
- * Draws a circular meter with a variable-size indicator and background track.
- *
- * @param indicatorColor Color of the indicator.
- * @param trackColor Color of the background track. Defaults to a faded copy of the indicator color.
- * @param indicatorPosition Position of the indicator on the track, as a percentage value from -1.0 (leftmost) to 1.0 (rightmost).
- * @param indicatorSize Size of the indicator as a percentage value from 0.0 (no width) to 1.0 (full width of meter).
- */
 private fun DrawScope.drawMeter(
     indicatorColor: Color,
     trackColor: Color = indicatorColor.copy(alpha = SliderInactiveTrackAlpha),
@@ -261,12 +233,6 @@ private fun DrawScope.drawMeter(
     )
 }
 
-/**
- * Displays the detected/selected musical note, including its root and octave.
- *
- * @param noteIndex The index of the note to display.
- * @param color The color of the text.
- */
 @Composable
 private fun NoteDisplay(noteIndex: Int, color: Color) {
     Row (
@@ -286,10 +252,6 @@ private fun NoteDisplay(noteIndex: Int, color: Color) {
     }
 }
 
-/**
- * Label displaying the [note offset][noteOffset] (or the specified [note][noteIndex] if [showNote] is true),
- * and tuning state with the specified [color] and [displayType].
- */
 @Composable
 private fun TuningMeterLabel(
     noteIndex: Int,
@@ -357,11 +319,6 @@ private fun TuningMeterLabel(
     }
 }
 
-/**
- * Composable displaying an accidental (sharp or flat) icon.
- * @param icon The icon resource.
- * @param contentDescription Description of the icon for accessibility.
- */
 @Composable
 private fun AccidentalIcon(
     @DrawableRes icon: Int,
@@ -373,114 +330,4 @@ private fun AccidentalIcon(
         modifier = Modifier.requiredSize(24.dp),
         tint = LocalContentColor.current.copy(alpha = 0.38f)
     )
-}
-
-// PREVIEWS
-
-@ThemePreview
-@Composable
-private fun ListeningPreview() {
-    PreviewWrapper {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableStateOf(null) }, displayType = TuningDisplayType.SEMITONES, showNote = false) {}
-    }
-}
-
-@ThemePreview
-@Composable
-private fun InTunePreview() {
-    PreviewWrapper {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableDoubleStateOf(0.09) }, displayType = TuningDisplayType.SEMITONES, showNote = false) {}
-    }
-}
-
-@PreviewDynamicColors
-@Preview(name = "Red", wallpaper = RED_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Blue", wallpaper = BLUE_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Green", wallpaper = GREEN_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Yellow", wallpaper = YELLOW_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Composable
-private fun DynamicInTunePreview() {
-    PreviewWrapper(dynamicColor = true) {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableDoubleStateOf(0.09) }, displayType = TuningDisplayType.SEMITONES, showNote = false) {}
-    }
-}
-
-@ThemePreview
-@Composable
-private fun YellowPreview() {
-    PreviewWrapper(dynamicColor = true) {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableDoubleStateOf(2.07) }, displayType = TuningDisplayType.SEMITONES, showNote = false) {}
-    }
-}
-
-@PreviewDynamicColors
-@Preview(name = "Red", wallpaper = RED_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Blue", wallpaper = BLUE_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Green", wallpaper = GREEN_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Yellow", wallpaper = YELLOW_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Composable
-private fun DynamicYellowPreview() {
-    PreviewWrapper(dynamicColor = true) {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableDoubleStateOf(2.07) }, displayType = TuningDisplayType.SIMPLE, showNote = false) {}
-    }
-}
-
-@ThemePreview
-@Composable
-private fun RedPreview() {
-    PreviewWrapper {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableDoubleStateOf(-27.0) }, displayType = TuningDisplayType.CENTS, showNote = false) {}
-    }
-}
-
-@PreviewDynamicColors
-@Preview(name = "Red", wallpaper = RED_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Blue", wallpaper = BLUE_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Green", wallpaper = GREEN_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Preview(name = "Yellow", wallpaper = YELLOW_DOMINATED_EXAMPLE, uiMode = UI_MODE_NIGHT_YES)
-@Composable
-private fun DynamicRedPreview() {
-    PreviewWrapper(dynamicColor = true) {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableDoubleStateOf(-27.0) }, displayType = TuningDisplayType.CENTS, showNote = false) {}
-    }
-}
-
-@LargeFontPreview
-@Composable
-private fun LargeFontLabelPreview() {
-    PreviewWrapper {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableDoubleStateOf(2.7) }, displayType = TuningDisplayType.SIMPLE, showNote = false) {}
-    }
-}
-
-@LargeFontPreview
-@Composable
-private fun LargeFontIconPreview() {
-    PreviewWrapper {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableDoubleStateOf(0.09) }, displayType = TuningDisplayType.SEMITONES, showNote = false) {}
-    }
-}
-
-@ThemePreview
-@Composable
-private fun InTuneNotePreview() {
-    PreviewWrapper {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableDoubleStateOf(0.09) }, displayType = TuningDisplayType.SEMITONES, showNote = true) {}
-    }
-}
-
-@ThemePreview
-@Composable
-private fun NoteCentsPreview() {
-    PreviewWrapper {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableDoubleStateOf(0.3) }, displayType = TuningDisplayType.CENTS, showNote = true) {}
-    }
-}
-
-@ThemePreview
-@Composable
-private fun NoteSemitonesPreview() {
-    PreviewWrapper {
-        TuningDisplay(noteIndex = -29, noteOffset = remember { mutableDoubleStateOf(0.5) }, displayType = TuningDisplayType.SEMITONES, showNote = true) {}
-    }
 }

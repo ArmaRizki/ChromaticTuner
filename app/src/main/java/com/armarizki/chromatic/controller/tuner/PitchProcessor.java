@@ -31,9 +31,6 @@ import be.tarsos.dsp.pitch.PitchDetector;
 
 class PitchProcessor implements AudioProcessor {
 
-    /**
-     * The underlying pitch detector;
-     */
     private final PitchDetector detector;
 
     private final PitchDetectionHandler handler;
