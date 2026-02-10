@@ -19,11 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-/**
- * Test harness for the Tuning class.
- *
- * @author Rohan Khayech
- */
+ 
 public final class TuningTest {
 
     private final Tuning tuning = Tuning.STANDARD;

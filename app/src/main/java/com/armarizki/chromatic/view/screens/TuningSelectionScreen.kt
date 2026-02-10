@@ -276,31 +276,7 @@ fun TuningSelectionScreen(
     }
 }
 
-/**
- * UI component displaying the current tuning and a list of favourite, custom and common tunings.
- *
- * @param modifier The modifier to apply to this layout.
- * @param listState State controller for the lazy list.
- * @param current Currently selected tuning, or null if N/A.
- * @param currentSaved Whether the current tuning is saved as a custom or built-in tuning.
- * @param tunings Current collection of filtered and grouped tunings.
- * @param favourites Set of tunings marked as favourites.
- * @param custom Set of custom tunings saved by the user.
- * @param pinned The tuning pinned to be used when the app is first opened.
- * @param pinnedInitial Whether the pinned tuning is used as the initial tuning.
- * @param instrumentFilter Current filter for tuning instrument.
- * @param categoryFilter Current filter for tuning category.
- * @param instrumentFilters Available instrument filters and their enabled states.
- * @param categoryFilters Available category filters and their enabled states.
- * @param onSelectInstrument Called when an instrument filter is selected.
- * @param onSelectCategory Called when an category filter is selected.
- * @param onSave Called when a custom tuning is saved with the specified name.
- * @param onFavouriteSet Called when a tuning is favourited or unfavourited.
- * @param onPin Called when a tuning is pinned as default.
- * @param onUnpin Called when the pinned tuning is unpinned as default.
- * @param onSelect Called when a tuning is selected.
- * @param onDelete Called when a custom tuning is deleted.
- */
+ 
 @Composable
 fun TuningList(
     modifier: Modifier = Modifier,
@@ -436,16 +412,7 @@ fun TuningList(
     }
 }
 
-/**
- * Chip bar containing filters for tuning instrument and category.
- *
- * @param instrumentFilter Current filter for tuning instrument.
- * @param categoryFilter Current filter for tuning category.
- * @param instrumentFilters Available instrument filters and their enabled states.
- * @param categoryFilters Available category filters and their enabled states.
- * @param onSelectInstrument Called when an instrument filter is selected.
- * @param onSelectCategory Called when an category filter is selected.
- */
+ 
 // Note: Recomposition could be improved.
 @Composable
 private fun FilterBar(
@@ -499,15 +466,7 @@ private fun FilterBar(
 }
 }
 
-/**
- * Filter chip for tuning filters.
- *
- * @param filter The filter to display.
- * @param filterText The localised filter name.
- * @param enabled Whether the filter is enabled to be selected.
- * @param selected Whether the filter is currently selected.
- * @param onSelect Called when the filter is selected/unselected.
- */
+ 
 @Composable
 private fun <T> TuningFilterChip(
     filter: T,
@@ -533,17 +492,7 @@ private fun <T> TuningFilterChip(
     )
 }
 
-/**
- * List item displaying the current tuning and an option to save it.
- *
- * @param tuning Currently selected tuning.
- * @param saved Whether the tuning is currently saved.
- * @param pinned Whether the tuning is currently pinned.
- * @param pinnedInitial Whether the pinned tuning is used as the initial tuning.
- * @param onSave Called when the save button is pressed.
- * @param onSelect Called when this tuning is selected.
- * @param onPinnedSet Called when the pin button is pressed.
- */
+ 
 @Composable
 private fun LazyItemScope.CurrentTuningItem(
     tuning: TuningEntry,
@@ -592,18 +541,7 @@ private fun LazyItemScope.CurrentTuningItem(
     )
 }
 
-/**
- * List item displaying a custom tuning, with options to favourite or remove it.
- *
- * @param tuning The tuning to display.
- * @param favourited Whether the tuning is currently marked as a favourite.
- * @param pinned Whether the tuning is currently pinned.
- * @param pinnedInitial Whether the pinned tuning is used as the initial tuning.
- * @param onFavouriteSet Called when the favourite button is pressed.
- * @param onUnpin Called when this tuning is unpinned as default.
- * @param onSelect Called when this tuning is selected.
- * @param onDelete Called when this tuning is swiped to be removed.
- */
+ 
 @Composable
 private fun LazyItemScope.CustomTuningItem(
     tuning: TuningEntry.InstrumentTuning,
@@ -668,17 +606,7 @@ private fun LazyItemScope.CustomTuningItem(
     }
 }
 
-/**
- * List item displaying a tuning, with an option to favourite it.
- *
- * @param tuning The tuning to display.
- * @param favourited Whether the tuning is currently marked as a favourite.
- * @param pinned Whether the tuning is currently pinned.
- * @param pinnedInitial Whether the pinned tuning is used as the initial tuning.
- * @param onFavouriteSet Called when the favourite button is pressed.
- * @param onSelect Called when this tuning is selected.
- * @param onUnpin Called when this tuning is unpinned as default.
- */
+ 
 @Composable
 private fun LazyItemScope.FavouritableTuningItem(
     tuning: TuningEntry,
@@ -719,13 +647,7 @@ private fun LazyItemScope.FavouritableTuningItem(
     }
 }
 
-/**
- * List item displaying a custom tuning, with support for a trailing action.
- *
- * @param tuning The tuning to display.
- * @param onSelect Called when this tuning is selected.
- * @param trailing The trailing action to display.
- */
+ 
 @Composable
 private fun LazyItemScope.TuningItem(
     tuning: TuningEntry,
@@ -769,7 +691,7 @@ private fun LazyItemScope.TuningItem(
     }
 }
 
-/** @return The localised name of this instrument. */
+ 
 @Composable
 fun Instrument.getLocalisedName(): String {
     return stringResource(
@@ -780,7 +702,7 @@ fun Instrument.getLocalisedName(): String {
     )
 }
 
-/** @return The localised name of this category. */
+ 
 @Composable
 fun Category?.getLocalisedName(): String {
     return stringResource(when (this) {
@@ -791,7 +713,7 @@ fun Category?.getLocalisedName(): String {
     })
 }
 
-/** UI component displaying a tuning category label with [title] text. */
+ 
 @Composable
 private fun LazyItemScope.SectionLabel(
     title: String,

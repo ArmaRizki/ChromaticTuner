@@ -43,23 +43,7 @@ import com.armarizki.chromatic.model.tuning.TuningEntry
 import com.armarizki.chromatic.view.theme.PreviewWrapper
 import com.armarizki.music.Tuning
 
-/**
- * Row UI component displaying and allowing selection and retuning of the current tuning.
- *
- * @param modifier Modifier to be applied to the selector.
- * @param tuning The current guitar tuning.
- * @param favTunings Set of tunings marked as favourite by the user.
- * @param getCanonicalName Gets the name of the tuning if it is saved as a custom tuning.
- * @param enabled Whether the selector is enabled. Defaults to true.
- * @param openDirect Whether to open the tuning selection screen directly instead of the favourites dropdown.
- * @param onSelect Called when a tuning is selected.
- * @param onTuneDown Called when the tuning is tuned down.
- * @param onTuneUp Called when the tuning is tuned up.
- * @param onOpenTuningSelector Called when the user opens the tuning selector screen.
- * @param editModeEnabled
- *
- * @author Rohan Khayech
- */
+ 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
 @Composable
 fun TuningSelector(
@@ -160,15 +144,7 @@ fun TuningSelector(
     }
 }
 
-/**
- * Outlined dropdown box field showing the current tuning.
- *
- * @param tuning The current guitar tuning.
- * @param getCanonicalName Gets the name of the tuning if it is saved as a custom tuning.
- * @param expanded Whether the dropdown box is expanded.
- * @param showExpanded Whether to show the expanded state.
- * @param compact Whether to show the compact version of the tuning.
- */
+ 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CurrentTuningField(
@@ -206,18 +182,7 @@ private fun CurrentTuningField(
     }
 }
 
-/**
- * UI component displaying the name and strings of the specified tuning.
- *
- * @param modifier The modifier to apply to this layout.
- * @param compact Whether to show the compact version of the tuning.
- * @param tuning The tuning to display.
- * @param fontWeight The font weight of the tuning name text.
- * @param horizontalAlignment The horizontal alignment of the text.
- * @param getCanonicalName Gets the name of the tuning if it is saved as a custom tuning.
- *
- * @author Rohan Khayech
- */
+ 
 @Composable
 fun TuningItem(
     modifier: Modifier = Modifier,

@@ -5,19 +5,19 @@ import com.armarizki.music.Tuning
 
 @Immutable
 sealed class TuningEntry(
-    /** Name of the tuning. */
+     
     open val name: String?
 ) {
-    /** The instrument tuning, if applicable. */
+     
     abstract val tuning: Tuning?
 
-    /** The tuning's key for use in lists. */
+     
     abstract val key: String
 
-    /** Whether the tuning has a name. */
+     
     fun hasName(): Boolean = !name.isNullOrEmpty()
 
-    /** The chromatic tuning mode. */
+     
     @Immutable
     object ChromaticTuning: TuningEntry("Chromatic") {
         override val tuning: Tuning? = null
@@ -28,7 +28,7 @@ sealed class TuningEntry(
         }
     }
 
-    /** An instrument tuning. */
+     
     @Immutable
     class InstrumentTuning(
         override val tuning: Tuning

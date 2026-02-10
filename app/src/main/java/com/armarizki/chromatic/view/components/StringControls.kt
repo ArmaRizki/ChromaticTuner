@@ -71,16 +71,7 @@ fun StringControls(
     }
 }
 
-/**
- * Component displaying each string in the current [tuning] side-by-side and allowing selection of a string for tuning.
- * @param tuning Current guitar tuning used for comparison.
- * @param selectedString Index of the selected string in the tuning.
- * @param tuned Whether each string has been tuned.
- * @param onSelect Called when a string is selected.
- * @param onTuneDown Called when a string is tuned down.
- * @param onTuneUp Called when a string is tuned up.
- * @param editModeEnabled Whether edit mode is enabled.
- */
+ 
 @Composable
 private fun SideBySideStringControls(
     tuning: Tuning,
@@ -124,17 +115,7 @@ private fun SideBySideStringControls(
     }
 }
 
-/**
- * Component displaying the specified [strings] inline and allowing selection of a string for tuning.
- * @param tuning Current guitar tuning used for comparison.
- * @param strings Strings to display in this selector and their indexes within the tuning. Defaults to [tuning].
- * @param selectedString Index of the selected string in the tuning.
- * @param tuned Whether each string has been tuned.
- * @param onSelect Called when a string is selected.
- * @param onTuneDown Called when a string is tuned down.
- * @param onTuneUp Called when a string is tuned up.
- * @param editModeEnabled Whether edit mode is enabled.
- */
+ 
 @Composable
 private fun InlineStringControls(
     tuning: Tuning,
@@ -220,15 +201,7 @@ private fun StringControl(
     }
 }
 
-/**
- * Buttons displaying and allowing user selection of the specified string.
- *
- * @param index Index of the string within the tuning.
- * @param string The guitar string.
- * @param tuned Whether the string is tuned.
- * @param selected Whether the string is currently selected for tuning.
- * @param onSelect Called when the string is selected.
- */
+ 
 @Composable
 private fun StringSelectionButton(
     index: Int,

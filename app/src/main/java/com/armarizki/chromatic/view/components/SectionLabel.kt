@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
-/** UI component displaying a list section label with [title] text. */
+ 
 @Composable
 fun SectionLabel(title: String, modifier: Modifier = Modifier) {
     Text(

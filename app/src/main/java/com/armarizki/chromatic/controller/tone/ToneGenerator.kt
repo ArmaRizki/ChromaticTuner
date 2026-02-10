@@ -79,9 +79,7 @@ class ToneGenerator {
         }
     }
 
-    /**
-     * Stop current tone immediately.
-     */
+     
     fun stop() {
         if (isPlaying.get()) {
             try {

@@ -7,11 +7,7 @@ import static org.junit.Assert.assertThrows;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Test harness for the Notes class.
- *
- * @author Rohan Khayech
- */
+ 
 public final class NotesTest {
 
     @Test

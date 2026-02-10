@@ -9,15 +9,12 @@ import com.armarizki.chromatic.model.preferences.TunerPreferences
 import com.armarizki.chromatic.model.preferences.tunerPreferenceDataStore
 import kotlinx.coroutines.launch
 
-/**
- * Controller that handles launching Google Play review prompts.
- * @author Rohan Khayech
- */
+ 
 class ReviewControllerImpl(private val context: ComponentActivity): ReviewController {
-    /** Google Play review manager. */
+     
     private val manager: ReviewManager = ReviewManagerFactory.create(context)
 
-    /** Launches a prompt for the user to review the app on Google Play. */
+     
     override fun launchReviewPrompt() {
         val request = manager.requestReviewFlow()
         request.addOnCompleteListener { task ->

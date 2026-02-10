@@ -16,10 +16,10 @@ import java.util.Set;
 
 public final class Tunings {
 
-    /** Internal list of common guitar tunings. */
+     
     private static final Set<Tuning> tunings = new LinkedHashSet<>();
 
-    /** A list of common guitar tunings. */
+     
     public static final Set<Tuning> TUNINGS = Collections.unmodifiableSet(tunings);
 
     public static final Tuning STANDARD = add(Tuning.STANDARD);
@@ -49,7 +49,7 @@ public final class Tunings {
     public static final Tuning ALL_4TH = add(Tuning.fromString("All 4th", GUITAR, MISC, "F4 C4 G3 D3 A2 E2"));
     public static final Tuning NST = add(Tuning.fromString("New Standard Tuning", GUITAR, MISC, "G4 E4 A3 D3 G2 C2"));
 
-    /** Adds the specified tuning to the list and returns it. */
+     
     private static Tuning add(Tuning tuning) {
         tunings.add(tuning);
         return tuning;

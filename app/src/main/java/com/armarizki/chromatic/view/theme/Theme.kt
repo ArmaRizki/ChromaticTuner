@@ -12,14 +12,7 @@ import com.rohankhayech.android.util.ui.theme.m3.AdaptableMaterialTheme
 import com.rohankhayech.android.util.ui.theme.m3.dynamicTrueDarkColorScheme
 import com.rohankhayech.android.util.ui.theme.m3.trueDark
 
-/**
- * Theme for the app.
- *
- * @param darkTheme Whether to use the dark variant of this theme.
- * @param fullBlack Whether to use full black colors when [darkTheme] is enabled.
- * @param dynamicColor Whether to use dynamic color.
- * @param content Content to display with this theme.
- */
+ 
 @Composable
 fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

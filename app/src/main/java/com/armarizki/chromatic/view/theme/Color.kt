@@ -119,7 +119,7 @@ private val onErrorContainerDark = Color(0xFFFFDAD6)
 
 
 
-/** Light M3 Color Scheme for the application. */
+ 
 val LightColorScheme = lightColorScheme(
     primary = primaryLight,
     onPrimary = onPrimaryLight,
@@ -158,7 +158,7 @@ val LightColorScheme = lightColorScheme(
     surfaceContainerHighest = surfaceContainerHighestLight,
 )
 
-/** Dark M3 Color Scheme for the application. */
+ 
 val DarkColorScheme = darkColorScheme(
     primary = primaryDark,
     onPrimary = onPrimaryDark,
@@ -197,7 +197,7 @@ val DarkColorScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDark,
 )
 
-/** True dark M3 color scheme for the application. */
+ 
 val TrueDarkColorScheme = DarkColorScheme.trueDark().copy(
     surface = Color.Black,
     background = Color.Black,
@@ -207,7 +207,7 @@ val TrueDarkColorScheme = DarkColorScheme.trueDark().copy(
 )
 
 
-/** Extra colors for the app. *//** Extra colors for the app. */
+  
 val MaterialTheme.extColors: ExtendedColorScheme
     @Composable
     get() = if (isLight) extendedLight else extendedDark

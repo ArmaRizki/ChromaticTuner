@@ -18,11 +18,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
-/**
- * Test harness for the tuning list class.
- *
- * @author Rohan Khayech
- */
+ 
 class TuningListTest {
 
     private lateinit var tuningList: TuningList

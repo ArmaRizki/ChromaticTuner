@@ -33,30 +33,22 @@ import com.armarizki.chromatic.view.theme.PreviewWrapper
 import com.armarizki.chromatic.view.theme.extColors
 import com.armarizki.music.Notes
 
-/** Octave of the lowest note detectable by the tuner. */
+ 
 private val LOWEST_OCTAVE = Notes.getOctave(Notes.getSymbol(LOWEST_NOTE))
 
-/** Octave of the highest note detectable by the tuner. */
+ 
 private val HIGHEST_OCTAVE = Notes.getOctave(Notes.getSymbol(HIGHEST_NOTE))
 
-/** Number of octaves available for tuning, from the lowest to the highest note. */
+ 
 private val NUM_OCTAVES = HIGHEST_OCTAVE - LOWEST_OCTAVE + 1
 
-/** Index of the root note, of the lowest note detectable by the tuner, in the list of note symbols. */
+ 
 private val LOWEST_ROOT_NOTE_INDEX = Notes.NOTE_SYMBOLS.indexOf(Notes.getRootNote(Notes.getSymbol(LOWEST_NOTE)))
 
-/** Index of the root note, of the highest note detectable by the tuner, in the list of note symbols. */
+ 
 private val HIGHEST_ROOT_NOTE_INDEX = Notes.NOTE_SYMBOLS.indexOf(Notes.getRootNote(Notes.getSymbol(HIGHEST_NOTE)))
 
-/**
- * Component displaying and allowing selection of the available notes and octaves for tuning.
- * @param modifier Modifier to apply to this component.
- * @param selectedNoteIndex Index of the selected note.
- * @param tuned Whether each string has been tuned.
- * @param onSelect Called when a string is selected.
- *
- * @author Rohan Khayech
- */
+ 
 @Composable
 fun NoteSelector(
     modifier: Modifier = Modifier,
@@ -110,15 +102,7 @@ fun NoteSelector(
     }
 }
 
-/**
- * Component displaying and allowing selection of the available notes for tuning in a single row.
- * @param modifier Modifier to apply to this component.
- * @param selectedNoteIndex Index of the selected note.
- * @param tuned Whether each string has been tuned.
- * @param onSelect Called when a string is selected.
- *
- * @author Rohan Khayech
- */
+ 
 @Composable
 fun CompactNoteSelector(
     modifier: Modifier = Modifier,
@@ -146,18 +130,7 @@ fun CompactNoteSelector(
     }
 }
 
-/**
- * Component displaying a scrollable row of note selection buttons.
- * @param modifier Modifier to apply to this component.
- * @param items List of pairs of string index and label to display in this button row.
- * @param selectedIndex Index of the selected button.
- * @param activatedButtons Whether each button is activated.
- * @param disabledButtons Whether each button is disabled.
- * @param reversed Whether the button row is reversed.
- * @param onSelect Called when a string is selected.
- *
- * @author Rohan Khayech
- */
+ 
 @Composable
 fun ScrollableButtonRow(
     modifier: Modifier = Modifier,
@@ -194,16 +167,7 @@ fun ScrollableButtonRow(
     }
 }
 
-/**
- * Buttons displaying and allowing user selection of the specified note.
- *
- * @param index Index of the button.
- * @param label The button label.
- * @param tuned Whether the note is tuned.
- * @param selected Whether the note is currently selected for tuning.
- * @param disabled Whether the button is disabled.
- * @param onSelect Called when the note is selected.
- */
+ 
 @Composable
 fun NoteSelectionButton(
     index: Int,

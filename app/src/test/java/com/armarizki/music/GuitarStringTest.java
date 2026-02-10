@@ -13,11 +13,7 @@ import org.junit.Test;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- * Test harness for the GuitarString class.
- *
- * @author Rohan Khayech
- */
+ 
 public final class GuitarStringTest {
 
     private final GuitarString str = GuitarString.E2;

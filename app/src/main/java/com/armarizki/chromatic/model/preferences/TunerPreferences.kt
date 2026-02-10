@@ -48,12 +48,10 @@ data class TunerPreferences(
         const val DEFAULT_USE_DYNAMIC_COLOR = false
         const val DEFAULT_SHOW_REVIEW_PROMPT = true
 
-        /** Maximum number of times to prompt the user for a review. */
+         
         const val REVIEW_PROMPT_ATTEMPTS = 3
 
-        /**
-         * Maps the specified android [preferences][prefs] to a [TunerPreferences] object.
-         */
+         
         fun fromAndroidPreferences(prefs: Preferences): TunerPreferences {
             return TunerPreferences(
                 a4Pitch = prefs[A4_PITCH_KEY] ?: DEFAULT_A4_PITCH,
@@ -72,35 +70,35 @@ data class TunerPreferences(
     }
 }
 
-/** Enum representing the available options for displaying tuning offset. */
+ 
 @Immutable
 enum class TuningDisplayType(val multiplier: Int) {
-    /** Displays a simple offset value and whether to tune up or down. */
+     
     SIMPLE(10),
-    /** Displays tuning offset in semitones. */
+     
     SEMITONES(1),
-    /** Displays tuning offset in cents. */
+     
     CENTS(100)
 }
 
-/** Enum representing the available layouts to display string controls. */
+ 
 @Immutable
 enum class StringLayout {
-    /** Displays string controls in-line (for electric guitars). */
+     
     INLINE,
-    /** Displays string controls side by side (for acoustic guitars). */
+     
     SIDE_BY_SIDE
 }
 
-/** Enum representing the available options for the default tuning used when opening the app. */
+ 
 @Immutable
 enum class InitialTuningType {
-    /** Default to the pinned tuning. */
+     
     PINNED,
 
-    /** Default to the last used tuning. */
+     
     LAST_USED,
 }
 
-/** Provides the data store for tuner preferences. */
+ 
 val Context.tunerPreferenceDataStore by preferencesDataStore(name = "tuner_preferences")

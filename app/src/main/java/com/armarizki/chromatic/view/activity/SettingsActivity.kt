@@ -37,28 +37,24 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-/**
- * Activity that allows the user to select their preferences for the guitar tuner.
- *
- * @author Rohan Khayech
- */
+ 
 class SettingsActivity : ComponentActivity() {
 
     companion object {
-        /** Activity intent extra for the name of the pinned tuning. */
+         
         const val EXTRA_PINNED = "pinned"
     }
 
-    /** View model used to interact with the users preferences. */
+     
     private lateinit var vm: SettingsActivityViewModel
 
-    /** Callback used to dismiss about screen when the back button is pressed. */
+     
     private lateinit var dismissAboutScreenOnBack: OnBackPressedCallback
 
-    /** Callback used to dismiss licences screen when the back button is pressed. */
+     
     private lateinit var dismissLicencesScreenOnBack: OnBackPressedCallback
 
-    /** Called when the activity is created. */
+     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -132,7 +128,7 @@ class SettingsActivity : ComponentActivity() {
         }
     }
 
-    /** Opens the about screen and enables custom back behaviour. */
+     
     private fun openAboutScreen() {
         dismissAboutScreenOnBack.isEnabled = true
         vm.setScreen(Screen.ABOUT)
@@ -143,7 +139,7 @@ class SettingsActivity : ComponentActivity() {
         vm.setScreen(Screen.SETTINGS)
     }
 
-    /** Opens the licences screen and enables custom back behaviour. */
+     
     private fun openLicencesScreen() {
         dismissLicencesScreenOnBack.isEnabled = true
         vm.setScreen(Screen.LICENCES)
@@ -155,31 +151,24 @@ class SettingsActivity : ComponentActivity() {
     }
 }
 
-/**
- * View model for the tuner settings activity.
- *
- * @param dataStore Data store object used to access and edit the user's preferences.
- * @param pinnedTuning The tuning selected to be used when the app is first opened.
- *
- * @author Rohan Khayech
- */
+ 
 private class SettingsActivityViewModel(
     private val dataStore: DataStore<Preferences>,
     val pinnedTuning: String
 ) : ViewModel() {
 
-    /** Mutable backing property for [screen]. */
+     
     private val _screen = MutableStateFlow(Screen.SETTINGS)
 
-    /** The currently visible screen. */
+     
     val screen = _screen.asStateFlow()
 
-    /** Flow containing the users preferences. */
+     
     val prefs: Flow<TunerPreferences> = dataStore.data
         .catch { e -> if (e is IOException) emit(emptyPreferences()) else throw e }
         .map(TunerPreferences::fromAndroidPreferences)
 
-    /** Sets whether the string select sound is [enabled][enable]. */
+     
     fun setEnableStringSelectSound(enable: Boolean) {
         setPreference(TunerPreferences.ENABLE_STRING_SELECT_SOUND_KEY, enable)
     }
@@ -188,47 +177,47 @@ private class SettingsActivityViewModel(
     { setPreference(TunerPreferences.A4_PITCH_KEY, value)
     }
 
-    /** Sets whether the in tune sound is [enabled][enable]. */
+     
     fun setEnableInTuneSound(enable: Boolean) {
         setPreference(TunerPreferences.ENABLE_IN_TUNE_SOUND_KEY, enable)
     }
 
-    /** Sets whether tuning editing is [enabled][enable]. */
+     
     fun toggleEditModeDefault(enable: Boolean) {
         setPreference(TunerPreferences.EDIT_MODE_DEFAULT_KEY, enable)
     }
 
-    /** Sets the [type][displayType] of tuning offset value to display. */
+     
     fun setDisplayType(displayType: TuningDisplayType) {
         setPreference(TunerPreferences.DISPLAY_TYPE_KEY, displayType.toString())
     }
 
-    /** Sets the [layout] to display string controls. */
+     
     fun setStringLayout(layout: StringLayout) {
         setPreference(TunerPreferences.STRING_LAYOUT_KEY, layout.toString())
     }
 
-    /** Sets whether to [use] full black theme when in dark mode. */
+     
     fun setUseBlackTheme(use: Boolean) {
         setPreference(TunerPreferences.USE_BLACK_THEME_KEY, use)
     }
 
-    /** Sets whether to [use] dynamic color theme when in dark mode. */
+     
     fun setUseDynamicColor(use: Boolean) {
         setPreference(TunerPreferences.USE_DYNAMIC_COLOR_KEY, use)
     }
 
-    /** Sets the [initialTuning] to be used when the app is first opened. */
+     
     fun setInitialTuning(initialTuning: InitialTuningType) {
         setPreference(TunerPreferences.INITIAL_TUNING_KEY, initialTuning.toString())
     }
 
-    /** Opts the user out of future review prompts. */
+     
     fun optOutOfReviewPrompt() {
         setPreference(TunerPreferences.SHOW_REVIEW_PROMPT_KEY, false)
     }
 
-    /** Sets the preference with the specified [key] to the specified [value]. */
+     
     private fun <T> setPreference(key: Preferences.Key<T>, value: T) {
         viewModelScope.launch {
             dataStore.edit{
@@ -237,23 +226,18 @@ private class SettingsActivityViewModel(
         }
     }
 
-    /** Sets the visible [screen]. */
+     
     fun setScreen(screen: Screen) {
         _screen.update { screen }
     }
 
-    /**
-     * Factory class used to instantiate the view model with a reference to the data store.
-     *
-     * @param dataStore Data store object used to access and edit the user's preferences.
-     * @param pinnedTuning The tuning selected to be used when the app is first opened.
-     */
+     
     class Factory(
         private val dataStore: DataStore<Preferences>,
         private val pinnedTuning: String
     ) : ViewModelProvider.Factory {
 
-        /** Instantiates the view model with a reference to the data store. */
+         
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(SettingsActivityViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")

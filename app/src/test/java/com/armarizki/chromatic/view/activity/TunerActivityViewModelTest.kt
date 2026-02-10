@@ -12,11 +12,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
-/**
- * Test harness for the TunerActivity view model.
- *
- * @author Rohan Khayech
- */
+ 
 class TunerActivityViewModelTest {
 
     private lateinit var vm: TunerActivityViewModel

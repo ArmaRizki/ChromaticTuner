@@ -282,11 +282,7 @@ fun TunerScreen(
     }
 }
 
-/**
- * Type of layout for the tuner screen body.
- * Should place all appropriate components provided,
- * and must use the provided padding for the root composable.
- */
+ 
 private typealias TunerBodyLayout = @Composable (
     padding: PaddingValues,
     tuningDisplay: @Composable () -> Unit,
@@ -295,42 +291,7 @@ private typealias TunerBodyLayout = @Composable (
     tuningSelector: @Composable (modifier: Modifier) -> Unit
 ) -> Unit
 
-/**
- * Scaffold containing the main UI components of the tuner screen body.
- * The scaffold places these components in the appropriate layout.
- *
- * [Portrait][portrait], [landscape] and [compact][compactLayout] layouts
- * must be defined to determine the placement of the UI components.
- *
- * @param compact Whether to use compact layout.
- * @param expanded Whether the current window is an expanded width.
- * @param tuning Guitar tuning used for comparison.
- * @param noteOffset The offset between the currently playing note and the selected string.
- * @param selectedString Index of the currently selected string within the tuning.
- * @param selectedNote The index of the currently selected note in chromatic mode.
- * @param tuned Whether each string has been tuned.
- * @param noteTuned Whether the selected note in chromatic mode has been tuned.
- * @param autoDetect Whether the tuner will automatically detect the currently playing string.
- * @param chromatic Whether the tuner is in chromatic mode.
- * @param favTunings Set of tunings marked as favourite by the user.
- * @param getCanonicalName Gets the name of the tuning if it is saved as a custom tuning.
- * @param prefs User preferences for the tuner.
- * @param editModeEnabled Whether tuning editing is enabled.
- * @param onSelectString Called when a string is selected.
- * @param onSelectTuning Called when a tuning is selected.
- * @param onSelectChromatic Called when chromatic mode is selected.
- * @param onSelectNote Called when a note is selected in chromatic mode.
- * @param onTuneUpString Called when a string is tuned up.
- * @param onTuneDownString Called when a string is tuned down.
- * @param onTuneUpTuning Called when the tuning is tuned up.
- * @param onTuneDownTuning Called when the tuning is tuned down.
- * @param onAutoChanged Called when the auto detect switch is toggled.
- * @param onTuned Called when the detected note is held in tune.
- * @param onOpenTuningSelector Called when the user opens the tuning selector screen.
- * @param portrait Layout to use in portrait orientation.
- * @param landscape Layout to use in landscape orientation.
- * @param compactLayout Layout to use for compact screens.
- */
+ 
 @Composable
 private fun TunerBodyScaffold(
     padding: PaddingValues,
@@ -454,14 +415,7 @@ private fun TunerBodyScaffold(
     )
 }
 
-/**
- * UI screen shown to the user when the audio permission is not granted.
- *
- * @param canRequest Whether the permission can be requested.
- * @param onSettingsPressed Called when the settings navigation button is pressed.
- * @param onRequestPermission Called when the request permission button is pressed.
- * @param onOpenPermissionSettings Called when the open permission settings button is pressed.
- */
+ 
 @Composable
 fun TunerPermissionScreen(
     canRequest: Boolean,
@@ -516,11 +470,7 @@ fun TunerPermissionScreen(
 }
 
 
-/**
- * UI screen shown to the user when the tuner has failed to start.
- * @param error The error to display.
- * @param onSettingsPressed Called when the settings navigation button is pressed.
- */
+ 
 @Composable
 fun TunerErrorScreen(
     error: Exception?,
@@ -566,13 +516,7 @@ fun TunerErrorScreen(
     }
 }
 
-/**
- * App bar for the tuning screen.
- * @param onSettingsPressed Called when the settings button is pressed.
- * @param showEditToggle Whether to show the edit mode toggle button.
- * @param editModeEnabled Whether tuning editing is enabled.
- * @param onEditModeChanged Called when the edit mode toggle button is pressed.
- */
+ 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AppBar(
@@ -601,13 +545,7 @@ private fun AppBar(
     )
 }
 
-/**
- * Action buttons for the app bar.
- * @param showEditToggle Whether to show the edit mode toggle button.
- * @param editModeEnabled Whether tuning editing is enabled.
- * @param onEditModeChanged Called when the edit mode toggle button is pressed.
- * @param onSettingsPressed Called when the settings button is pressed.
- */
+ 
 @Composable
 private fun AppBarActions(
     showEditToggle: Boolean,
@@ -637,13 +575,7 @@ private fun AppBarActions(
     }
 }
 
-/**
- * App bar for the tuning screen in compact layout.
- * @param scrollBehavior Scroll behavior for the app bar.
- * @param onConfigurePressed Called when the configure tuning button is pressed.
- * @param tuning Current tuning.
- * @param getCanonicalName Gets the name of the tuning if it is saved as a custom tuning.
- */
+ 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CompactAppBar(
@@ -675,13 +607,7 @@ private fun CompactAppBar(
     )
 }
 
-/**
- * App bar for the tuning screen in expanded layout.
- * @param onSettingsPressed Called when the settings button is pressed.
- * @param editModeEnabled Whether tuning editing is enabled.
- * @param showEditToggle Whether to show the edit mode toggle button.
- * @param onEditModeChanged Called when the edit mode toggle button is pressed.
- */
+ 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun ExpandedAppBar(

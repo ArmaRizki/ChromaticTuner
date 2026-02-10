@@ -35,26 +35,14 @@ public final class GuitarString implements Iterable<Double>, Comparable<GuitarSt
         this.rootNoteIndex = rootNoteIndex;
     }
 
-    /**
-     * @return The root note of the string, excluding the octave.
-     */
     public String toString() {
         return root;
     }
 
-    /**
-     * @return The root note of the string, including the octave.
-     */
     public String toFullString() {
         return root+octave;
     }
 
-    /**
-     * Returns the fret on this string corresponding to the note with the specified pitch.
-     * @param pitch The pitch to find.
-     * @return The corresponding fret on this string.
-     * @throws NoSuchElementException If this string does not contain a note with the specified pitch.
-     */
     public int getFret(double pitch) {
         int fret = Notes.getIndex(pitch) - rootNoteIndex;
         if (validFret(fret)) {
@@ -64,8 +52,6 @@ public final class GuitarString implements Iterable<Double>, Comparable<GuitarSt
         }
     }
 
-    /** @return The pitch of the note at the specified fret on this string.
-     *  @throws IndexOutOfBoundsException If the specified fret is less than 0 or more than {@link GuitarString#FRETS}. */
     public double getPitch(int fret) {
         if (validFret(fret)) {
             return Notes.getPitch(getNoteIndex(fret));
@@ -74,11 +60,6 @@ public final class GuitarString implements Iterable<Double>, Comparable<GuitarSt
         }
     }
 
-    /**
-     * Checks if the note corresponding to the specified pitch exists on this string.
-     * @param pitch The pitch of the note.
-     * @return {@code true} if the note exists on this string.
-     */
     public boolean containsNote(double pitch) {
         try {
             getFret(pitch);
@@ -88,29 +69,20 @@ public final class GuitarString implements Iterable<Double>, Comparable<GuitarSt
         }
     }
 
-    /** @return The index of the root note of this string. */
     public int getRootNoteIndex() {
         return rootNoteIndex;
     }
 
-    /**
-     * Returns the index of the note corresponding to the specified fret on this string.
-     * @param fret The fret on this string.
-     * @return The corresponding note index.
-     * @throws IndexOutOfBoundsException If the specified fret is less than 0 or more than FRETS.
-     */
     public int getNoteIndex(int fret) {
         if (!validFret(fret)) throw new IndexOutOfBoundsException("Specified fret is not contained on this string.");
         return rootNoteIndex+fret;
     }
 
-    /** @return A guitar string with a root note one semitone lower than this string. */
     public GuitarString lowerString() {
         int lowerNoteIndex = rootNoteIndex-1;
         return GuitarString.fromRootNote(Notes.getSymbol(lowerNoteIndex), ()->lowerNoteIndex);
     }
 
-    /** @return A guitar string with a root note one semitone lower than this string. */
     public GuitarString higherString() {
         int higherNoteIndex = rootNoteIndex+1;
         return GuitarString.fromRootNote(Notes.getSymbol(higherNoteIndex), ()->higherNoteIndex);
@@ -130,11 +102,6 @@ public final class GuitarString implements Iterable<Double>, Comparable<GuitarSt
         return Objects.hash(rootNoteIndex);
     }
 
-    /**
-     * Returns an iterator over elements of type {@code T}.
-     *
-     * @return an Iterator.
-     */
     @Override
     public Iterator<Double> iterator() {
         return new Iterator<Double>() {
@@ -155,41 +122,15 @@ public final class GuitarString implements Iterable<Double>, Comparable<GuitarSt
         };
     }
 
-    /**
-     * Compares this guitar string with the specified string for order.  Returns a
-     * negative integer, zero, or a positive integer as this string is less
-     * than, equal to, or greater than the specified object.
-     *
-     * @param o the object to be compared.
-     * @return a negative integer, zero, or a positive integer as this string
-     *     is less than, equal to, or greater than the specified string.
-     * @throws NullPointerException if the specified object is null.
-     */
     @Override
     public int compareTo(GuitarString o) {
         return this.rootNoteIndex - o.rootNoteIndex;
     }
 
-    /**
-     * Returns a guitar string with the specified root note.
-     * @param rootNote A string representing the root note of the string, containing a letter, an optional accidental and the octave (eg. "E2" or "A#4").
-     * @return The corresponding guitar string.
-     * @throws IllegalArgumentException If the note symbol string does not represent a valid note.
-     * @throws NullPointerException If the root note string is null.
-     */
     public static GuitarString fromRootNote(String rootNote) {
         return fromRootNote(rootNote, ()->Notes.getIndex(rootNote));
     }
 
-    /**
-     * Returns a guitar string with the specified root note.
-     * Used to skip note index calculation for constructing statically defined standard strings.
-     * @param rootNote A string representing the root note of the string, containing a letter, an optional accidental and the octave (eg. "E2" or "A#4").
-     * @param rootNoteIndex Supplier for the index of the root note of the string. Called only if the string is note already in the cache.
-     * @return The corresponding guitar string.
-     * @throws IllegalArgumentException If the note symbol string does not represent a valid note.
-     * @throws NullPointerException If the root note string or index supplier are null.
-     */
     private static GuitarString fromRootNote(String rootNote, Supplier<Integer> rootNoteIndex) {
         Objects.requireNonNull(rootNote, "Root note string cannot be null.");
         Objects.requireNonNull(rootNoteIndex, "Root note index supplier cannot be null.");
@@ -204,11 +145,6 @@ public final class GuitarString implements Iterable<Double>, Comparable<GuitarSt
         return gs;
     }
 
-    /**
-     * Checks whether the fret is valid.
-     * @param fret The fret to check.
-     * @return True if less than 0 and false if >= {@link GuitarString#FRETS}.
-     */
     public static boolean validFret(int fret) {
         return fret >= 0 && fret <= FRETS;
     }
