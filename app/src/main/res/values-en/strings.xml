@@ -47,10 +47,11 @@
     <string name="pref_display_type_cents">Cents</string>
     <string name="pref_display_type_cents_desc">Display tuning offset in cents.</string>
     <string name="prefs_sound">Sound</string>
-    <string name="pref_enable_string_select_sound">Play sound on string selection</string>
-    <string name="pref_enable_string_select_sound_desc">Play a note sound when strings are selected.</string>
+    <string name="pref_enable_string_select_sound">Play sound on Note selection</string>
+    <string name="pref_enable_string_select_sound_desc">Play a sine wave when strings are selected.</string>
     <string name="pref_enable_in_tune_sound">Play in-tune sound</string>
     <string name="pref_enable_in_tune_sound_desc">Play a sound once the string is in tune.</string>
+    <string name="pref_reference_pitch_value">%1$d Hz</string>
     <string name="prefs_display">Theme and Display</string>
     <string name="pref_use_black_theme">Use true dark theme when in dark mode</string>
     <string name="pref_use_black_theme_desc">Optimised for AMOLED displays.</string>
@@ -115,4 +116,7 @@
     <string name="rate_app">Rate and review</string>
     <string name="review_opted_out">You won\'t be asked to review the app again.</string>
     <string name="dist_desc">%1$s Build</string>
+    <string name="pref_reference_pitch">Reference pitch</string>
+    <string name="pref_reference_pitch_desc">Set the reference frequency used for tuning.</string>
+    <string name="pref_reference_pitch_title">A4 reference</string>
 </resources>

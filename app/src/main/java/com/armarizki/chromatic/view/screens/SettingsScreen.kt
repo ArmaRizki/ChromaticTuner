@@ -28,7 +28,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
-import com.rohankhayech.android.util.ui.preview.ThemePreview
 import com.rohankhayech.android.util.ui.theme.m3.isLight
 import com.rohankhayech.android.util.ui.theme.m3.isTrueDark
 import com.armarizki.chromatic.R
@@ -37,12 +36,8 @@ import com.armarizki.chromatic.model.preferences.StringLayout
 import com.armarizki.chromatic.model.preferences.TunerPreferences
 import com.armarizki.chromatic.model.preferences.TuningDisplayType
 import com.armarizki.chromatic.view.components.SectionLabel
-import com.armarizki.chromatic.view.theme.AppTheme
 import com.armarizki.music.Tuning
 import androidx.compose.material3.Slider
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.*
 
 
 
@@ -67,7 +62,6 @@ fun SettingsScreen(
     Scaffold(
         Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = { TopAppBar(
-            // Back navigation button.
             navigationIcon = {
                 IconButton(onClick = onBackPressed) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.nav_back))
@@ -192,35 +186,32 @@ fun SettingsScreen(
 
             HorizontalDivider()
 
-            SectionLabel(title = "Reference Pitch (A4)")
+            SectionLabel(
+                title = stringResource(R.string.pref_reference_pitch)
+            )
 
             ListItem(
-                headlineContent = { Text("A4 Reference") },
+                headlineContent = {
+                    Text(stringResource(R.string.pref_reference_pitch_title))
+                },
                 supportingContent = {
                     Column {
-                        Text("${prefs.a4Pitch.toInt()} Hz")
+                        Text(
+                            stringResource(
+                                R.string.pref_reference_pitch_value,
+                                prefs.a4Pitch.toInt()
+                            )
+                        )
 
                         Slider(
                             value = prefs.a4Pitch.toFloat(),
-                            onValueChange = {
-                                onSetA4Pitch(it.toDouble())
-                            },
-                            onValueChangeFinished = {
-                                onSetA4Pitch(prefs.a4Pitch)
-                            },
+                            onValueChange = { onSetA4Pitch(it.toDouble()) },
                             valueRange = 420f..460f,
                             steps = 40
                         )
                     }
                 }
             )
-
-
-
-
-
-
-
 
             HorizontalDivider()
 

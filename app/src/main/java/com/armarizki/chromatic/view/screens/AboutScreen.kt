@@ -111,7 +111,7 @@ fun AboutScreen(
             )
 
             Text(
-                "Developed and Modified by Arma Rizki",
+                "Modified by Arma Rizki",
                 modifier = Modifier.padding(bottom = 16.dp).padding(horizontal = 16.dp),
                 style = MaterialTheme.typography.bodyMedium
             )

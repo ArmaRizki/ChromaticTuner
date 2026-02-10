@@ -10,20 +10,11 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-/**
- * The guitar string class represents a tuned guitar string. It provides methods to find the fret
- * and pitch of notes on a string, as well as definitions of commonly used tuned strings.
- * This class is immutable.
- *
- * @author Rohan Khayech
- */
 @Immutable
 public final class GuitarString implements Iterable<Double>, Comparable<GuitarString> {
 
-    /** Cache used to store already constructed guitar string objects. */
     private static final Map<String, GuitarString> cache = new HashMap<>();
 
-    // STANDARD STRINGS
     public static final GuitarString D2 = fromRootNote("D2",()-> -31);
     public static final GuitarString E2 = fromRootNote("E2", ()-> -29);
     public static final GuitarString A2 = fromRootNote("A2", ()-> -24);
@@ -32,22 +23,12 @@ public final class GuitarString implements Iterable<Double>, Comparable<GuitarSt
     public static final GuitarString B3 = fromRootNote("B3", ()-> -10);
     public static final GuitarString E4 = fromRootNote("E4", ()-> -5);
 
-    /** The number of frets on a guitar string. */
     public static final int FRETS = 24;
 
-    /** The root note of the string (eg. E for E2) */
     private final String root;
-    /** The octave of the root note. (eg. 2 for E2) */
     private final int octave;
-    /** The note index corresponding to the string's root note. */
     private final int rootNoteIndex;
 
-    /**
-     * Constructs a new guitar string.
-     *
-     * @param rootNote A string representing the root note of the string, containing a letter, an optional accidental and the octave (eg. "E2" or "A#4").
-     * @param rootNoteIndex The note index corresponding to the string's root note.
-     */
     private GuitarString(String rootNote, int rootNoteIndex) {
         this.root = Notes.getRootNote(rootNote);
         this.octave = Notes.getOctave(rootNote);
